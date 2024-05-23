@@ -1,7 +1,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Header/GameService.h"
 
-
+/*
 class Player
 {
 private:
@@ -43,9 +44,22 @@ public:
     void PlayerShootBullets(){}
 };
 
+*/
+
 
 int main()
 {
+    GameService gameService;
+    gameService.Ignite();
+
+    while (gameService.IsRunning())
+    {
+        gameService.Update();
+
+        gameService.Render();
+    }
+
+
     //sf::VideoMode videoMode = *(new sf::VideoMode(800, 600));
     //sf::RenderWindow* renderWindow = new sf::RenderWindow(videoMode, "SFML Window");
     //what is the difference between this syntax where 'new' keyword is used and the below syntax?
@@ -54,7 +68,7 @@ int main()
     //sf::RenderWindow renderWindow = sf::RenderWindow(videoMode, "SFML Window");
     //What is the difference between these various syntaxes?
 
-    sf::VideoMode videoMode(800, 600);
+    /*sf::VideoMode videoMode(800, 600);
     sf::RenderWindow renderWindow(videoMode, "SFML Window");
 
     Player player;
@@ -93,7 +107,7 @@ int main()
         renderWindow.draw(player.playerSprite);
 
         renderWindow.display();
-    }
+    }*/
 
     return 0;
 }
