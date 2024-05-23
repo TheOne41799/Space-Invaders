@@ -54,6 +54,33 @@ int main()
 		triangle.setFillColor(sf::Color::Blue);
 		renderWindow->draw(triangle);
 
+
+		//Draw outscal logo texture as a sprite
+		sf::Texture outscalLogoTexture;
+		outscalLogoTexture.loadFromFile("assets/textures/outscal_logo.png");
+
+		sf::Sprite outscalLogoSprite;
+		outscalLogoSprite.setTexture(outscalLogoTexture);
+
+		outscalLogoSprite.setPosition(400, 100);
+		outscalLogoSprite.setRotation(45);
+		outscalLogoSprite.setScale(0.4, 0.4);
+
+		renderWindow->draw(outscalLogoSprite);
+
+
+		//Draw text
+		sf::Font font;
+		font.loadFromFile("assets/fonts/bubbleBobble.ttf");
+		
+		sf::Text text("SFML is awesome!", font, 50);
+		text.setFillColor(sf::Color::White);
+		text.setPosition(renderWindow->getSize().x / 2 - 200, 20);
+
+		renderWindow->draw(text);
+
+
+
 		//Draw a blue triangle - Drawing this triangle resulted in error - ????
 		//sf::ConvexShape triangleB;
 		//triangleB.setFillColor(sf::Color::Blue);
