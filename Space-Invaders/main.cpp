@@ -1,13 +1,12 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-using namespace std;
 
 
 class Player
 {
 private:
     int playerHealth = 10;
-    sf::Vector2f playerPosition = sf::Vector2f(100, 100);
+    sf::Vector2f playerPosition = sf::Vector2f(400, 300);
     int playerMovementSpeed = 6;
     int playerScore = 0;
 public:
@@ -24,8 +23,16 @@ public:
         playerScore = newScore;
     }
 
+    sf::Vector2f GetPlayerPosition()
+    {
+        return playerPosition;
+    }
+
     void PlayerTakeDamage(){}
-    void PlayerMove(){}
+    void PlayerMove(){
+        //This is a test comment to check if player is moving
+        std::cout << "Player is moving" << std::endl;
+    }
     void PlayerShootBullets(){}
 };
 
@@ -44,6 +51,8 @@ int main()
     sf::RenderWindow renderWindow(videoMode, "SFML Window");
 
     Player player;
+    player.playerTexture.loadFromFile("assets/textures/player_ship.png");
+    player.playerSprite.setTexture(player.playerTexture);
 
     std::cout << player.GetPlayerScore() << std::endl;
 
@@ -59,7 +68,22 @@ int main()
             }
         }
 
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+            player.PlayerMove();
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+            player.PlayerMove();
+        }
+
+
         renderWindow.clear(sf::Color::Blue);
+
+        player.playerSprite.setPosition(player.GetPlayerPosition());
+        renderWindow.draw(player.playerSprite);
 
         renderWindow.display();
     }
