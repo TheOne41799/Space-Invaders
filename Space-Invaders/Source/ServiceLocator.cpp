@@ -3,47 +3,53 @@
 
 ServiceLocator::ServiceLocator()
 {
-	//constructor
+	graphicService = nullptr;
+	CreateServices();
 }
 
 
 ServiceLocator::~ServiceLocator()
 {
-	//Destructor
+	ClearAllServices();
 }
 
 void ServiceLocator::CreateServices()
 {
-	//Create instances of all services
+	graphicService = new GraphicService();
 }
 
 void ServiceLocator::ClearAllServices()
 {
-	//Deletes and deallocates memory for all services.
+	delete(graphicService);
+	graphicService = nullptr;
 }
 
 
 
 ServiceLocator* ServiceLocator::GetInstance()
 {
-	// Provides a method to access the unique ServiceLocator instance (object).
-	// This could be like a singleton object in C#
-	return nullptr;
+	static ServiceLocator instance;
+	return &instance;
 }
 
 void ServiceLocator::Initialize()
 {
-	//	Initializes the ServiceLocator.
+	graphicService->Initialize();
 }
 
 void ServiceLocator::Update()
 {
-	//Update the service locator
+	graphicService->Update();
 }
 
 void ServiceLocator::Render()
 {
 	//	Renders using the services.
+}
+
+GraphicService* ServiceLocator::GetGraphicService()
+{
+	return graphicService;
 }
 
 

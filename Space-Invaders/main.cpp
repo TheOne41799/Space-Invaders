@@ -1,5 +1,5 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 #include "Header/GameService.h"
 
 /*
@@ -49,14 +49,14 @@ public:
 
 int main()
 {
-    GameService gameService;
-    gameService.Ignite();
+    GameService* gameService = new GameService();
+    gameService->Ignite();
 
-    while (gameService.IsRunning())
+    while (gameService->IsRunning())
     {
-        gameService.Update();
+        gameService->Update();
 
-        gameService.Render();
+        gameService->Render();
     }
 
 
