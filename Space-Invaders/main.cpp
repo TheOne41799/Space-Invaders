@@ -1,7 +1,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Header/GameService.h"
 
 
+/*
 class Player
 {
 private:
@@ -41,11 +43,24 @@ public:
     void PlayerTakeDamage() {}
     void PlayerShootBullets() {}
 };
+*/
 
 
 
 int main()
 {
+    GameService gameService;
+    gameService.Ignite();
+
+    while (gameService.IsRunning())
+    {
+        gameService.Update();
+
+        gameService.Render();
+    }
+
+
+    /*
     sf::VideoMode videoMode(800, 600);
     sf::RenderWindow renderWindow(videoMode, "SFML Window");
 
@@ -82,4 +97,7 @@ int main()
 
         renderWindow.display();
     }
+    */
+
+    return 0;
 }
