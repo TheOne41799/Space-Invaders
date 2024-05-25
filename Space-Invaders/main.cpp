@@ -49,14 +49,15 @@ public:
 
 int main()
 {
-    GameService gameService;
-    gameService.Ignite();
+    GameService* gameService = new GameService();
 
-    while (gameService.IsRunning())
+    gameService->Ignite();
+
+    while (gameService->IsRunning())
     {
-        gameService.Update();
+        gameService->Update();
 
-        gameService.Render();
+        gameService->Render();
     }
 
 

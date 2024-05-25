@@ -1,9 +1,26 @@
 #include "../Header/GameService.h"
+#include "../Header/GraphicService.h"
 
+
+GameService::GameService()
+{
+	serviceLocator = nullptr;
+	gameWindow = nullptr;
+}
+
+GameService::~GameService()
+{
+	Destroy();
+}
 
 void GameService::Initialize()
 {
 	//Initialize objects
+}
+
+void GameService::InitializeVariables()
+{
+
 }
 
 void GameService::Destroy()
@@ -11,33 +28,26 @@ void GameService::Destroy()
 	//Clean up of objects
 }
 
-GameService::GameService()
-{
-	//contructor
-}
-
-GameService::~GameService()
-{
-	//destructor
-}
-
 void GameService::Ignite()
 {
-	//start the game
+	serviceLocator = ServiceLocator::GetInstance();
+	Initialize();
 }
 
 void GameService::Update()
 {
-	//game loop
+	serviceLocator->Update();
 }
 
 void GameService::Render()
 {
-	//show things on screen - render the next frame
+	gameWindow->clear(serviceLocator->GetGraphicService()->GetGameWindowColor());
+	serviceLocator->Render();
+	gameWindow->display();
 }
 
 bool GameService::IsRunning()
 {
-	//check if the game is running
-	return false;
+	//return false;
+	return serviceLocator->GetGraphicService()->IsGameWindowOpen();
 }
