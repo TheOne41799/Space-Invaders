@@ -1,5 +1,6 @@
 #include "../Header/GameService.h"
-#include "../Header/GraphicService.h"
+#include "../Header/GraphicService.h" //Should this be included?
+#include "../Header/EventService.h" //Should this be included?
 
 
 GameService::GameService()
@@ -38,6 +39,7 @@ void GameService::Ignite()
 
 void GameService::Update()
 {
+	serviceLocator->GetEventService()->ProcessEvents();
 	serviceLocator->Update();
 }
 
