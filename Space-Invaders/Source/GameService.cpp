@@ -15,17 +15,19 @@ GameService::~GameService()
 
 void GameService::Initialize()
 {
-	//Initialize objects
+	serviceLocator->Initialize();
+	InitializeVariables();
 }
 
 void GameService::InitializeVariables()
 {
-
+	gameWindow = serviceLocator->GetGraphicService()->GetGameWindow();
 }
 
 void GameService::Destroy()
 {
-	//Clean up of objects
+	//delete serviceLocator;
+	delete gameWindow;
 }
 
 void GameService::Ignite()
@@ -48,6 +50,10 @@ void GameService::Render()
 
 bool GameService::IsRunning()
 {
-	//return false;
 	return serviceLocator->GetGraphicService()->IsGameWindowOpen();
 }
+
+
+
+
+
