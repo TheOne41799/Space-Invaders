@@ -15,6 +15,8 @@ private:
 	sf::VideoMode* videoMode;
 	sf::RenderWindow* gameWindow;
 
+	const int frameRate = 60;
+
 	void SetVideoMode();
 	void OnDestroy();
 

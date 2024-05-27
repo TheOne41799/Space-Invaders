@@ -18,12 +18,12 @@ void PlayerService::ProcessPlayerInputs()
 	{
 		if (eventService->PressedLeftKey())
 		{
-			Move(-1.0f * GetMoveSpeed());
+			MoveLeft();
 		}
 
 		if (eventService->PressedRightKey())
 		{
-			Move(1.0f * GetMoveSpeed());
+			MoveRight();
 		}
 	}
 }
@@ -52,9 +52,14 @@ void PlayerService::Render()
 	gameWindow->draw(playerSprite);
 }
 
-void PlayerService::Move(float offsetX)
+void PlayerService::MoveLeft()
 {
-	playerPosition.x += offsetX;
+	playerPosition.x -= playerMovementSpeed * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+}
+
+void PlayerService::MoveRight()
+{
+	playerPosition.x += playerMovementSpeed * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 }
 
 sf::Vector2f PlayerService::GetPlayerPosition()
