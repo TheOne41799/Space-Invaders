@@ -1,75 +1,30 @@
 #include "../Header/PlayerService.h"
-#include "../Header/ServiceLocator.h"
+#include "../Header/Player/PlayerController.h"
 
-
-void PlayerService::InitializePlayerSprite()
-{
-	if (playerTexture.loadFromFile(playerTexturePath))
-	{
-		playerSprite.setTexture(playerTexture);
-	}
-}
-
-void PlayerService::ProcessPlayerInputs()
-{
-	EventService* eventService = ServiceLocator::GetInstance()->GetEventService();
-
-	if (eventService->IsKeyboardEvent())
-	{
-		if (eventService->PressedLeftKey())
-		{
-			MoveLeft();
-		}
-
-		if (eventService->PressedRightKey())
-		{
-			MoveRight();
-		}
-	}
-}
 
 PlayerService::PlayerService()
 {
-	gameWindow = nullptr;
+	playerController = new PlayerController();
 }
 
-PlayerService::~PlayerService() = default;
+PlayerService::~PlayerService()
+{
+	delete(playerController);
+}
 
 void PlayerService::Initialize()
 {
-	gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
-	InitializePlayerSprite();
+	playerController->Initialize();
 }
 
 void PlayerService::Update()
 {
-	ProcessPlayerInputs();
-	playerSprite.setPosition(GetPlayerPosition());
+	playerController->Update();
 }
 
 void PlayerService::Render()
 {
-	gameWindow->draw(playerSprite);
-}
-
-void PlayerService::MoveLeft()
-{
-	playerPosition.x -= playerMovementSpeed * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
-}
-
-void PlayerService::MoveRight()
-{
-	playerPosition.x += playerMovementSpeed * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
-}
-
-sf::Vector2f PlayerService::GetPlayerPosition()
-{
-	return playerPosition;
-}
-
-int PlayerService::GetMoveSpeed()
-{
-	return playerMovementSpeed;
+	playerController->Render();
 }
 
 
