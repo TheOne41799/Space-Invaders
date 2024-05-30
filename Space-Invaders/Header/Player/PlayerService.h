@@ -2,19 +2,21 @@
 //#include "../../Header/Player/PlayerController.h"
 
 
-class PlayerController; //This led to a small error - chapter - Using Forward Declarations
-
-
-class PlayerService
+namespace Player
 {
-private:
-	PlayerController* playerController;
+	class PlayerController; //This led to a small error - chapter - Using Forward Declarations
 
-public:
-	PlayerService();
-	~PlayerService();
+	class PlayerService
+	{
+	private:
+		PlayerController* playerController;
 
-	void Initialize();
-	void Update();
-	void Render();
-};
+	public:
+		PlayerService();
+		~PlayerService();
+
+		void Initialize();
+		void Update();
+		void Render();
+	};
+}

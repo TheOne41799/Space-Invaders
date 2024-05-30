@@ -1,53 +1,57 @@
 #include "../../Header/Player/PlayerModel.h"
 
-PlayerModel::PlayerModel()
-{
-}
 
-PlayerModel::~PlayerModel()
+namespace Player
 {
-}
+	PlayerModel::PlayerModel()
+	{
+	}
 
-void PlayerModel::Initialize()
-{
-	Reset();
-}
+	PlayerModel::~PlayerModel()
+	{
+	}
 
-void PlayerModel::Reset()
-{
-	playerState = PlayerState::ALIVE;
-	currentPlayerPosition = initialPlayerPosition;
-	playerScore = 0;
-}
+	void PlayerModel::Initialize()
+	{
+		Reset();
+	}
 
-sf::Vector2f PlayerModel::GetPlayerPosition()
-{
-	return currentPlayerPosition;
-}
+	void PlayerModel::Reset()
+	{
+		playerState = PlayerState::ALIVE;
+		currentPlayerPosition = initialPlayerPosition;
+		playerScore = 0;
+	}
 
-void PlayerModel::SetPlayerPosition(sf::Vector2f position)
-{
-	currentPlayerPosition = position;
-}
+	sf::Vector2f PlayerModel::GetPlayerPosition()
+	{
+		return currentPlayerPosition;
+	}
 
-int PlayerModel::GetPlayerScore()
-{
-	return playerScore;
-}
+	void PlayerModel::SetPlayerPosition(sf::Vector2f position)
+	{
+		currentPlayerPosition = position;
+	}
 
-void PlayerModel::SetPlayerScore(int score)
-{
-	playerScore = score;
-}
+	int PlayerModel::GetPlayerScore()
+	{
+		return playerScore;
+	}
 
-PlayerState PlayerModel::GetPlayerState()
-{
-	return playerState;
-}
+	void PlayerModel::SetPlayerScore(int score)
+	{
+		playerScore = score;
+	}
 
-void PlayerModel::SetPlayerState(PlayerState state)
-{
-	playerState = state;
+	PlayerState PlayerModel::GetPlayerState()
+	{
+		return playerState;
+	}
+
+	void PlayerModel::SetPlayerState(PlayerState state)
+	{
+		playerState = state;
+	}
 }
 
 

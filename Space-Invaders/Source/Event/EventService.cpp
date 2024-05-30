@@ -1,74 +1,79 @@
 #include "../../Header/Event/EventService.h"
-#include "../../Header/Gameplay/GameService.h"
+#include "../../Header/Main/GameService.h"
 #include "../../Header/Graphics/GraphicService.h"
 #include "../../Header/Global/ServiceLocator.h"
 
 
-EventService::EventService()
+namespace Event
 {
-	gameWindow = nullptr;
-}
+	using namespace Global;
 
-EventService::~EventService() = default;
-
-
-void EventService::Initialize()
-{
-	gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
-}
-
-void EventService::Update()
-{
-
-}
-
-void EventService::ProcessEvents()
-{
-	if (IsGameWindowOpen())
+	EventService::EventService()
 	{
-		while (gameWindow->pollEvent(gameEvent))
+		gameWindow = nullptr;
+	}
+
+	EventService::~EventService() = default;
+
+
+	void EventService::Initialize()
+	{
+		gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
+	}
+
+	void EventService::Update()
+	{
+
+	}
+
+	void EventService::ProcessEvents()
+	{
+		if (IsGameWindowOpen())
 		{
-			if (GameWindowWasClosed() || HasQuitGame())
+			while (gameWindow->pollEvent(gameEvent))
 			{
-				gameWindow->close();
+				if (GameWindowWasClosed() || HasQuitGame())
+				{
+					gameWindow->close();
+				}
 			}
 		}
 	}
-}
 
-bool EventService::HasQuitGame()
-{
-	return IsKeyboardEvent() && PressedEscapeKey();
-}
+	bool EventService::HasQuitGame()
+	{
+		return IsKeyboardEvent() && PressedEscapeKey();
+	}
 
-bool EventService::IsKeyboardEvent()
-{
-	return gameEvent.type == sf::Event::KeyPressed;
-}
+	bool EventService::IsKeyboardEvent()
+	{
+		return gameEvent.type == sf::Event::KeyPressed;
+	}
 
-bool EventService::PressedLeftKey()
-{
-	return gameEvent.key.code == sf::Keyboard::Left;
-}
+	bool EventService::PressedLeftKey()
+	{
+		return gameEvent.key.code == sf::Keyboard::Left;
+	}
 
-bool EventService::PressedRightKey()
-{
-	return gameEvent.key.code == sf::Keyboard::Right;
-}
+	bool EventService::PressedRightKey()
+	{
+		return gameEvent.key.code == sf::Keyboard::Right;
+	}
 
-bool EventService::PressedEscapeKey()
-{
-	return gameEvent.key.code == sf::Keyboard::Escape;
-}
+	bool EventService::PressedEscapeKey()
+	{
+		return gameEvent.key.code == sf::Keyboard::Escape;
+	}
 
-bool EventService::IsGameWindowOpen()
-{
-	return gameWindow != nullptr;
-}
+	bool EventService::IsGameWindowOpen()
+	{
+		return gameWindow != nullptr;
+	}
 
-bool EventService::GameWindowWasClosed()
-{
-	return gameEvent.type == sf::Event::Closed;
+	bool EventService::GameWindowWasClosed()
+	{
+		return gameEvent.type == sf::Event::Closed;
+	}
 }
 
 

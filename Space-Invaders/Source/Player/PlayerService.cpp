@@ -2,31 +2,33 @@
 #include "../../Header/Player/PlayerController.h"  //This led to a small error - chapter - Using Forward Declarations
 
 
-PlayerService::PlayerService()
+namespace Player
 {
-	playerController = new PlayerController();
-}
+	PlayerService::PlayerService()
+	{
+		playerController = new PlayerController();
+	}
 
-PlayerService::~PlayerService()
-{
-	delete(playerController);
-}
+	PlayerService::~PlayerService()
+	{
+		delete(playerController);
+	}
 
-void PlayerService::Initialize()
-{
-	playerController->Initialize();
-}
+	void PlayerService::Initialize()
+	{
+		playerController->Initialize();
+	}
 
-void PlayerService::Update()
-{
-	playerController->Update();
-}
+	void PlayerService::Update()
+	{
+		playerController->Update();
+	}
 
-void PlayerService::Render()
-{
-	playerController->Render();
+	void PlayerService::Render()
+	{
+		playerController->Render();
+	}
 }
-
 
 
 

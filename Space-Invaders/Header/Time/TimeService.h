@@ -2,20 +2,23 @@
 #include <chrono>
 
 
-class TimeService
+namespace Time
 {
-private:
-	std::chrono::time_point<std::chrono::steady_clock> previousTime;
+	class TimeService
+	{
+	private:
+		std::chrono::time_point<std::chrono::steady_clock> previousTime;
 
-	float deltaTime;
+		float deltaTime;
 
-	void UpdateDeltaTime();
-	float CalculateDeltaTime();
-	void UpdatePreviousFrame();
+		void UpdateDeltaTime();
+		float CalculateDeltaTime();
+		void UpdatePreviousFrame();
 
-public:
-	void Initialize();
-	void Update();
+	public:
+		void Initialize();
+		void Update();
 
-	float GetDeltaTime();
-};
+		float GetDeltaTime();
+	};
+}

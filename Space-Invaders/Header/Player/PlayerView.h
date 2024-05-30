@@ -1,30 +1,35 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "PlayerController.h"
+//#include "PlayerController.h" //Use forward declaration instead
 
 
-class PlayerView
+namespace Player
 {
-private:
-	const sf::String playerTexturePath = "assets/textures/player_ship.png";
-	const float playerSpriteWidth = 60.0f;
-	const float playerSpriteHeight = 60.0f;
+	class PlayerController;
 
-	sf::RenderWindow* gameWindow;
+	class PlayerView
+	{
+	private:
+		const sf::String playerTexturePath = "assets/textures/player_ship.png";
+		const float playerSpriteWidth = 60.0f;
+		const float playerSpriteHeight = 60.0f;
 
-	sf::Texture playerTexture;
-	sf::Sprite playerSprite;
+		sf::RenderWindow* gameWindow;
 
-	void InitializePlayerSprite();
-	void ScalePlayerSprite();
+		sf::Texture playerTexture;
+		sf::Sprite playerSprite;
 
-	PlayerController* playerController;
+		void InitializePlayerSprite();
+		void ScalePlayerSprite();
 
-public:
-	PlayerView();
-	~PlayerView();
+		PlayerController* playerController;
 
-	void Initialize(PlayerController* controller);
-	void Update();
-	void Render();
-};
+	public:
+		PlayerView();
+		~PlayerView();
+
+		void Initialize(PlayerController* controller);
+		void Update();
+		void Render();
+	};
+}

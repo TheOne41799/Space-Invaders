@@ -2,35 +2,38 @@
 #include <SFML/Graphics.hpp>
 
 
-class GraphicService
+namespace Graphics
 {
-private:
-	const std::string gameWindowTitle = "Space Invaders";
+	class GraphicService
+	{
+	private:
+		const std::string gameWindowTitle = "Space Invaders";
 
-	const int gameWindowWidth = 800;
-	const int gameWindowHeight = 600;
+		const int gameWindowWidth = 800;
+		const int gameWindowHeight = 600;
 
-	const sf::Color gameWindowColor = sf::Color::Blue;
+		const sf::Color gameWindowColor = sf::Color::Blue;
 
-	sf::VideoMode* videoMode;
-	sf::RenderWindow* gameWindow;
+		sf::VideoMode* videoMode;
+		sf::RenderWindow* gameWindow;
 
-	const int frameRate = 60;
+		const int frameRate = 60;
 
-	void SetVideoMode();
-	void OnDestroy();
+		void SetVideoMode();
+		void OnDestroy();
 
-public:
-	GraphicService();
-	~GraphicService();
+	public:
+		GraphicService();
+		~GraphicService();
 
-	sf::RenderWindow* CreateGameWindow();
+		sf::RenderWindow* CreateGameWindow();
 
-	void Initialize();
-	void Update();
-	void Render();
-	bool IsGameWindowOpen();
+		void Initialize();
+		void Update();
+		void Render();
+		bool IsGameWindowOpen();
 
-	sf::RenderWindow* GetGameWindow();
-	sf::Color GetGameWindowColor();
-};
+		sf::RenderWindow* GetGameWindow();
+		sf::Color GetGameWindowColor();
+	};
+}
