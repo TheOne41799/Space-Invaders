@@ -1,5 +1,8 @@
 #pragma once
-#include "Player/PlayerController.h"
+//#include "../../Header/Player/PlayerController.h"
+
+
+class PlayerController; //This led to a small error - chapter - Using Forward Declarations
 
 
 class PlayerService

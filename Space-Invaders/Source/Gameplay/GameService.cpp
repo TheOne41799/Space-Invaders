@@ -1,6 +1,6 @@
-#include "../Header/GameService.h"
-#include "../Header/GraphicService.h" //Should this be included?
-#include "../Header/EventService.h" //Should this be included?
+#include "../../Header/Gameplay/GameService.h"
+#include "../../Header/Graphics/GraphicService.h" //Should this be included?
+#include "../../Header/Event/EventService.h" //Should this be included?
 
 
 GameService::GameService()
