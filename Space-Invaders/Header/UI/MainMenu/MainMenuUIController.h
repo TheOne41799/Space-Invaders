@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 
 
 namespace UI
@@ -7,7 +8,15 @@ namespace UI
 	{
 		class MainMenuUIController
 		{
+		private:
+			sf::RenderWindow* gameWindow;
+			
+		public:
+			MainMenuUIController();
 
+			void Initialize();
+			void Update();
+			void Render();
 		};
 	}
 }
