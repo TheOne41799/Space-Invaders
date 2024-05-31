@@ -25,6 +25,7 @@ namespace Main
 	{
 		serviceLocator->Initialize();
 		InitializeVariables();
+		ShowMainMenu();
 	}
 
 	void GameService::InitializeVariables()
@@ -70,6 +71,11 @@ namespace Main
 	GameState GameService::GetGameState()
 	{
 		return currentState;
+	}
+
+	void GameService::ShowMainMenu()
+	{
+		SetGameState(GameState::MAIN_MENU);
 	}
 }
 

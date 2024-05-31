@@ -4,7 +4,7 @@
 
 namespace UI
 {
-	//using namespace Main;
+	using namespace Main;
 	using namespace MainMenu;
 
 
@@ -31,12 +31,22 @@ namespace UI
 
 	void UIService::Update()
 	{
-		mainMenuUIController->Update();
+		switch (GameService::GetGameState())
+		{
+		case GameState::MAIN_MENU:
+			return mainMenuUIController->Update();
+			break;
+		}
 	}
 
 	void UIService::Render()
 	{
-		mainMenuUIController->Render();
+		switch (GameService::GetGameState())
+		{
+		case GameState::MAIN_MENU:
+			return mainMenuUIController->Render();
+			break;
+		}
 	}
 
 	void UIService::InitializeControllers()
