@@ -8,6 +8,7 @@ namespace Event
 {
 	using namespace Global;
 
+	
 	EventService::EventService()
 	{
 		gameWindow = nullptr;
@@ -23,7 +24,12 @@ namespace Event
 
 	void EventService::Update()
 	{
-
+		UpdateMouseButtonState(leftMouseButtonState, sf::Mouse::Left);
+		UpdateMouseButtonState(rightMouseButtonState, sf::Mouse::Right);
+		UpdateKeyboardButtonState(leftArrowButtonState, sf::Keyboard::Left);
+		UpdateKeyboardButtonState(rightArrowButtonState, sf::Keyboard::Right);
+		UpdateKeyboardButtonState(A_ButtonState, sf::Keyboard::A);
+		UpdateKeyboardButtonState(D_ButtonState, sf::Keyboard::D);
 	}
 
 	void EventService::ProcessEvents()
@@ -52,12 +58,12 @@ namespace Event
 
 	bool EventService::PressedLeftKey()
 	{
-		return gameEvent.key.code == sf::Keyboard::Left;
+		return leftArrowButtonState == ButtonState::HELD;;
 	}
 
 	bool EventService::PressedRightKey()
 	{
-		return gameEvent.key.code == sf::Keyboard::Right;
+		return rightArrowButtonState == ButtonState::HELD;
 	}
 
 	bool EventService::PressedEscapeKey()
@@ -77,12 +83,62 @@ namespace Event
 
 	bool EventService::PressedLeftMouseButton()
 	{
-		return gameEvent.type == sf::Event::MouseButtonPressed && gameEvent.mouseButton.button == sf::Mouse::Left;
+		return leftMouseButtonState == ButtonState::PRESSED;
 	}
 
 	bool EventService::PressedRightMouseButton()
 	{
-		return gameEvent.type == sf::Event::MouseButtonPressed && gameEvent.mouseButton.button == sf::Mouse::Right;
+		return rightMouseButtonState == ButtonState::PRESSED;
+	}
+
+	bool EventService::PressedAKey()
+	{
+		return A_ButtonState == ButtonState::HELD;
+	}
+
+	bool EventService::PressedDKey()
+	{
+		return D_ButtonState == ButtonState::HELD;
+	}
+
+	void EventService::UpdateMouseButtonState(ButtonState& currentButtonState, sf::Mouse::Button mouseButton)
+	{
+		if (sf::Mouse::isButtonPressed(mouseButton))
+		{
+			switch (currentButtonState)
+			{
+			case ButtonState::RELEASED:
+				currentButtonState = ButtonState::PRESSED;
+				break;
+			case ButtonState::PRESSED:
+				currentButtonState = ButtonState::HELD;
+				break;
+			}
+		}
+		else
+		{
+			currentButtonState = ButtonState::RELEASED;
+		}
+	}
+
+	void EventService::UpdateKeyboardButtonState(ButtonState& currentButtonState, sf::Keyboard::Key keyboardButton)
+	{
+		if (sf::Keyboard::isKeyPressed(keyboardButton))
+		{
+			switch (currentButtonState)
+			{
+			case ButtonState::RELEASED:
+				currentButtonState = ButtonState::PRESSED;
+				break;
+			case ButtonState::PRESSED:
+				currentButtonState = ButtonState::HELD;
+				break;
+			}
+		}
+		else
+		{
+			currentButtonState = ButtonState::RELEASED;
+		}
 	}
 }
 
