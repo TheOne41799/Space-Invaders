@@ -23,6 +23,8 @@ namespace UI
 		void UI::MainMenu::MainMenuUIController::Initialize()
 		{
 			gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
+			InitializeBackgroundImage();
+			InitializeButtons();
 		}
 
 		void MainMenuUIController::Update()
@@ -31,6 +33,76 @@ namespace UI
 
 		void MainMenuUIController::Render()
 		{
+			gameWindow->draw(backgroundSprite);
+			gameWindow->draw(playButtonSprite);
+			gameWindow->draw(instructionsButtonSprite);
+			gameWindow->draw(quitButtonSprite);
+		}
+
+		void MainMenuUIController::InitializeBackgroundImage()
+		{
+			if (backgroundTexture.loadFromFile(backgroundTexturePath))
+			{
+				backgroundSprite.setTexture(backgroundTexture);
+				ScaleBackgroundImage();
+			}
+		}
+
+		void MainMenuUIController::ScaleBackgroundImage()
+		{
+			backgroundSprite.setScale(
+				static_cast<float>(gameWindow->getSize().x) / backgroundSprite.getTexture()->getSize().x,
+				static_cast<float>(gameWindow->getSize().y) / backgroundSprite.getTexture()->getSize().y
+			);
+		}
+
+		void MainMenuUIController::InitializeButtons()
+		{
+			if (LoadButtonTexturesFromFile())
+			{
+				SetButtonSprites();
+				ScaleAllButtons();
+				PositionButtons();
+			}
+		}
+
+		bool MainMenuUIController::LoadButtonTexturesFromFile()
+		{
+			return playButtonTexture.loadFromFile(playButtonTexturePath) &&
+				instructionsButtonTexture.loadFromFile(instructionsButtonTexturePath) &&
+				quitButtonTexture.loadFromFile(quitButtonTexturePath);
+		}
+
+		void MainMenuUIController::SetButtonSprites()
+		{
+			playButtonSprite.setTexture(playButtonTexture);
+			instructionsButtonSprite.setTexture(instructionsButtonTexture);
+			quitButtonSprite.setTexture(quitButtonTexture);
+		}
+
+		void MainMenuUIController::ScaleAllButtons()
+		{
+			ScaleButton(&playButtonSprite);
+			ScaleButton(&instructionsButtonSprite);
+			ScaleButton(&quitButtonSprite);
+		}
+
+		void MainMenuUIController::ScaleButton(sf::Sprite* buttonToScale)
+		{
+			buttonToScale->setScale(
+				buttonWidth/buttonToScale->getTexture()->getSize().x,
+				buttonHeight/buttonToScale->getTexture()->getSize().y
+			);
+
+		}
+
+		void MainMenuUIController::PositionButtons()
+		{
+			float x_position = (static_cast<float>(gameWindow->getSize().x) / 2) - buttonWidth / 2;
+
+			playButtonSprite.setPosition({ x_position, 300.0f });
+			instructionsButtonSprite.setPosition({ x_position, 500.0f });
+			quitButtonSprite.setPosition({ x_position, 700.0f });
 		}
 	}
 }

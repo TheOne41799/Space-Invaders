@@ -31,15 +31,17 @@ namespace UI
 
 	void UIService::Update()
 	{
+		mainMenuUIController->Update();
 	}
 
 	void UIService::Render()
 	{
+		mainMenuUIController->Render();
 	}
 
 	void UIService::InitializeControllers()
 	{
-		//mainMenuUIController->Initialize();
+		mainMenuUIController->Initialize();
 	}
 
 	void UIService::Destroy()
