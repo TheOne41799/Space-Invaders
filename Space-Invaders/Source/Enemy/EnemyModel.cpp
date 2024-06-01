@@ -13,6 +13,7 @@ namespace Enemy
 
 	void EnemyModel::Initialize()
 	{
+		movementDirection = MovementDirection::RIGHT;
 		enemyPosition = referencePosition;
 	}
 
@@ -35,4 +36,16 @@ namespace Enemy
 	{
 		referencePosition = position;
 	}
+
+	MovementDirection EnemyModel::GetMovementDirection()
+	{
+		return movementDirection;
+	}
+
+	void EnemyModel::SetMovementDirection(MovementDirection direction)
+	{
+		movementDirection = direction;
+	}
+
+
 }
