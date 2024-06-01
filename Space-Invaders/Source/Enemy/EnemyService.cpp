@@ -1,17 +1,16 @@
 #include "../../Header/Enemy/EnemyService.h"
 #include "../../Header/Enemy/EnemyController.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Time/TimeService.h"
 
 
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Time;
 
 
-	EnemyService::EnemyService()
-	{
-		enemy = nullptr;
-	}
+	EnemyService::EnemyService(){}
 
 	EnemyService::~EnemyService()
 	{
@@ -20,29 +19,55 @@ namespace Enemy
 
 	void EnemyService::Initialize()
 	{
-		SpawnEnemy();
+		spawnTimer = spawnInterval;
 	}
 
 	void EnemyService::Update()
 	{
-		enemy->Update();
+		UpdateSpawnTimer();
+		ProcessEnemySpawn();
+
+		for (int i = 0; i < enemyList.size(); i++)
+		{
+			enemyList[i]->Update();
+		}
 	}
 
 	void EnemyService::Render()
 	{
-		enemy->Render();
+		for (int i = 0; i < enemyList.size(); i++)
+		{
+			enemyList[i]->Render();
+		}
 	}
 
-	EnemyController* EnemyService::SpawnEnemy()
+	void EnemyService::UpdateSpawnTimer()
 	{
-		enemy = new EnemyController();
-		enemy->Initialize();
+		spawnTimer += ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+	}
 
-		return enemy;
+	void EnemyService::ProcessEnemySpawn()
+	{
+		if (spawnTimer >= spawnInterval)
+		{
+			SpawnEnemy();
+			spawnTimer = 0.0f;
+		}
+	}
+
+	void EnemyService::SpawnEnemy()
+	{
+		EnemyController* enemyController = new EnemyController();
+		enemyController->Initialize();
+
+		enemyList.push_back(enemyController);
 	}
 
 	void EnemyService::Destroy()
 	{
-		delete(enemy);
+		for (int i = 0; i < enemyList.size(); i++)
+		{
+			delete(enemyList[i]);
+		}
 	}
 }
