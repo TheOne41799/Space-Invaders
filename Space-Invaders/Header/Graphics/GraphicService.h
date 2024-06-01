@@ -9,8 +9,8 @@ namespace Graphics
 	private:
 		const std::string gameWindowTitle = "Space Invaders";
 
-		const int gameWindowWidth = 800;
-		const int gameWindowHeight = 600;
+		const int gameWindowWidth = 1920;
+		const int gameWindowHeight = 1080;
 
 		const sf::Color gameWindowColor = sf::Color::Blue;
 
