@@ -5,6 +5,7 @@
 #include "../../Header/Enemy/EnemyConfig.h"
 #include "../../Header/Enemy/Controllers/SubZeroController.h"
 #include "../../Header/Enemy/Controllers/ZapperController.h"
+#include "../../Header/Enemy/Controllers/ThunderSnakeController.h"
 
 
 namespace Enemy
@@ -71,6 +72,9 @@ namespace Enemy
 
 		case::Enemy::EnemyType::SUBZERO:
 			return new SubZeroController(Enemy::EnemyType::SUBZERO);
+
+		case::Enemy::EnemyType::THUNDER_SNAKE:
+			return new ThunderSnakeController(Enemy::EnemyType::THUNDER_SNAKE);
 		}
 	}
 
@@ -94,6 +98,8 @@ namespace Enemy
 	void EnemyService::DestroyEnemy(EnemyController* enemyController)
 	{
 		enemyList.erase(std::remove(enemyList.begin(), enemyList.end(), enemyController), enemyList.end());
+
+		//printf("Enemy Killed");
 
 		delete(enemyController);
 	}

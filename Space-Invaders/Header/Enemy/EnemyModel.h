@@ -29,8 +29,8 @@ namespace Enemy
 		const float verticalTravelDistance = 100.f;
 		const float enemyMovementSpeed = 250.0f;
 
-		const float horizontalMovementSpeed = 50.0f;
-		const float verticalMovementSpeed = 50.0f;
+		//const float horizontalMovementSpeed = 50.0f;
+		//const float verticalMovementSpeed = 50.0f;
 
 		void Initialize();
 
