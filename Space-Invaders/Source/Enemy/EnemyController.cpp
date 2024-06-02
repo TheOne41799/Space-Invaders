@@ -24,7 +24,7 @@ namespace Enemy
 	void EnemyController::Initialize()
 	{
 		enemyModel->Initialize();
-		//enemyModel->SetEnemyPosition(GetRandomInitialPosition());
+		enemyModel->SetEnemyPosition(GetRandomInitialPosition());
 		enemyView->Initialize(this);
 	}
 
@@ -32,7 +32,7 @@ namespace Enemy
 	{
 		Move();
 		enemyView->Update();
-		//HandleOutOfBounds();
+		HandleOutOfBounds();
 	}
 
 	void EnemyController::Render()
@@ -40,7 +40,7 @@ namespace Enemy
 		enemyView->Render();
 	}	
 
-	/*sf::Vector2f EnemyController::GetRandomInitialPosition()
+	sf::Vector2f EnemyController::GetRandomInitialPosition()
 	{
 		float xOffsetDistance = (std::rand() % static_cast<int>
 								  (enemyModel->rightMostPosition.x - enemyModel->leftMostPosition.x));
@@ -49,11 +49,11 @@ namespace Enemy
 		float yPosition = enemyModel->leftMostPosition.y;
 
 		return sf::Vector2f(xPosition, yPosition);
-	}*/
+	}
 
 	void EnemyController::HandleOutOfBounds()
 	{
-		/*sf::Vector2f enemyPosition = GetEnemyPosition();
+		sf::Vector2f enemyPosition = GetEnemyPosition();
 
 		sf::Vector2u windowSize = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow()->getSize();
 
@@ -61,7 +61,7 @@ namespace Enemy
 			enemyPosition.y < 0 || enemyPosition.y > windowSize.y)
 		{
 			ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemy(this);
-		}*/
+		}
 	}
 
 	/*void EnemyController::Move()

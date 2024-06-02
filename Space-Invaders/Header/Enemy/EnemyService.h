@@ -6,6 +6,8 @@ namespace Enemy
 {
 	class EnemyController;
 
+	enum class EnemyType;
+
 
 	class EnemyService
 	{
@@ -17,7 +19,11 @@ namespace Enemy
 
 		void UpdateSpawnTimer();
 		void ProcessEnemySpawn();
+		EnemyType GetRandomEnemyType();
+		EnemyController* CreateEnemy(EnemyType enemyType);
 		void Destroy();
+
+
 
 	public:
 		EnemyService();
@@ -27,6 +33,7 @@ namespace Enemy
 		void Update();
 		void Render();
 
-		void SpawnEnemy();
+		EnemyController* SpawnEnemy();
+		void DestroyEnemy(EnemyController* enemyController);
 	};
 }

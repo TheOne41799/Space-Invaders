@@ -17,14 +17,7 @@ namespace Enemy
 		EnemyModel* enemyModel;
 		EnemyView* enemyView;
 
-	private:
-		//EnemyModel* enemyModel;
-		//EnemyView* enemyView;
-
 		virtual void Move() = 0;
-		//void MoveLeft();
-		//void MoveRight();
-		//void MoveDown();
 
 		sf::Vector2f GetRandomInitialPosition();
 		void HandleOutOfBounds();
