@@ -7,20 +7,30 @@ namespace Enemy
 	class EnemyModel;
 	class EnemyView;
 
+	enum class EnemyType;
+	enum class EnemyState;
+
 
 	class EnemyController
 	{
-	private:
+	protected:
 		EnemyModel* enemyModel;
 		EnemyView* enemyView;
 
-		virtual void Move();
-		void MoveLeft();
-		void MoveRight();
-		void MoveDown();
+	private:
+		//EnemyModel* enemyModel;
+		//EnemyView* enemyView;
+
+		virtual void Move() = 0;
+		//void MoveLeft();
+		//void MoveRight();
+		//void MoveDown();
+
+		sf::Vector2f GetRandomInitialPosition();
+		void HandleOutOfBounds();
 
 	public:
-		EnemyController();
+		EnemyController(EnemyType type);
 		virtual ~EnemyController();
 
 		virtual void Initialize();
@@ -28,5 +38,7 @@ namespace Enemy
 		void Render();
 
 		sf::Vector2f GetEnemyPosition();
+		EnemyState GetEnemyState();
+		EnemyType GetEnemyType();
 	};
 }

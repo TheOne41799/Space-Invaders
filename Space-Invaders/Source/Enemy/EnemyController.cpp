@@ -9,9 +9,9 @@ namespace Enemy
 	using namespace Global;
 
 
-	EnemyController::EnemyController()
+	EnemyController::EnemyController(EnemyType type)
 	{
-		enemyModel = new EnemyModel();
+		enemyModel = new EnemyModel(type);
 		enemyView = new EnemyView();
 	}
 
@@ -24,6 +24,7 @@ namespace Enemy
 	void EnemyController::Initialize()
 	{
 		enemyModel->Initialize();
+		//enemyModel->SetEnemyPosition(GetRandomInitialPosition());
 		enemyView->Initialize(this);
 	}
 
@@ -31,19 +32,39 @@ namespace Enemy
 	{
 		Move();
 		enemyView->Update();
+		//HandleOutOfBounds();
 	}
 
 	void EnemyController::Render()
 	{
 		enemyView->Render();
-	}
+	}	
 
-	sf::Vector2f EnemyController::GetEnemyPosition()
+	/*sf::Vector2f EnemyController::GetRandomInitialPosition()
 	{
-		return enemyModel->GetEnemyPosition();
+		float xOffsetDistance = (std::rand() % static_cast<int>
+								  (enemyModel->rightMostPosition.x - enemyModel->leftMostPosition.x));
+
+		float xPosition = enemyModel->leftMostPosition.x + xOffsetDistance;
+		float yPosition = enemyModel->leftMostPosition.y;
+
+		return sf::Vector2f(xPosition, yPosition);
+	}*/
+
+	void EnemyController::HandleOutOfBounds()
+	{
+		/*sf::Vector2f enemyPosition = GetEnemyPosition();
+
+		sf::Vector2u windowSize = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow()->getSize();
+
+		if (enemyPosition.x < 0 || enemyPosition.x > windowSize.x ||
+			enemyPosition.y < 0 || enemyPosition.y > windowSize.y)
+		{
+			ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemy(this);
+		}*/
 	}
 
-	void EnemyController::Move()
+	/*void EnemyController::Move()
 	{
 		switch (enemyModel->GetMovementDirection())
 		{
@@ -59,9 +80,9 @@ namespace Enemy
 			MoveDown();
 			break;
 		}
-	}
+	}*/
 
-	void EnemyController::MoveLeft()
+	/*void EnemyController::MoveLeft()
 	{
 		sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
@@ -77,9 +98,9 @@ namespace Enemy
 		{
 			enemyModel->SetEnemyPosition(currentPosition);
 		}
-	}
+	}*/
 
-	void EnemyController::MoveRight()
+	/*void EnemyController::MoveRight()
 	{
 		sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
@@ -95,9 +116,9 @@ namespace Enemy
 		{
 			enemyModel->SetEnemyPosition(currentPosition);
 		}
-	}
+	}*/
 
-	void EnemyController::MoveDown()
+	/*void EnemyController::MoveDown()
 	{
 		sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
@@ -119,6 +140,21 @@ namespace Enemy
 		{
 			enemyModel->SetEnemyPosition(currentPosition);
 		}
+	}*/
+
+	sf::Vector2f EnemyController::GetEnemyPosition()
+	{
+		return enemyModel->GetEnemyPosition();
+	}
+
+	EnemyState EnemyController::GetEnemyState()
+	{
+		return enemyModel->GetEnemyState();
+	}
+
+	EnemyType EnemyController::GetEnemyType()
+	{
+		return enemyModel->GetEnemyType();
 	}
 }
 

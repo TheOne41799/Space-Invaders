@@ -4,13 +4,6 @@
 
 namespace Enemy
 {
-	//enum class MovementDirection
-	//{
-	//	LEFT,
-	//	RIGHT,
-	//	DOWN,
-	//};
-
 	enum class EnemyType;
 	enum class MovementDirection;
 	enum class EnemyState;

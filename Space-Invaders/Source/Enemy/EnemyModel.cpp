@@ -7,6 +7,8 @@ namespace Enemy
 	EnemyModel::EnemyModel(EnemyType type)
 	{
 		enemyType = type;
+		enemyState = EnemyState::PATROLLING;
+		movementDirection = MovementDirection::RIGHT;
 	}
 
 	EnemyModel::~EnemyModel()
@@ -15,8 +17,8 @@ namespace Enemy
 
 	void EnemyModel::Initialize()
 	{
-		enemyState = EnemyState::PATROLLING;
-		movementDirection = MovementDirection::RIGHT;
+		//enemyState = EnemyState::PATROLLING;
+		//movementDirection = MovementDirection::RIGHT;
 		enemyPosition = referencePosition;
 	}
 
