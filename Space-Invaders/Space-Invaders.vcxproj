@@ -133,7 +133,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Enemy\Controllers\SubZeroController.cpp" />
+    <ClCompile Include="Source\Enemy\Controllers\ThunderSnakeController.cpp" />
+    <ClCompile Include="Source\Enemy\Controllers\ZapperController.cpp" />
+    <ClCompile Include="Source\Enemy\EnemyController.cpp" />
+    <ClCompile Include="Source\Enemy\EnemyModel.cpp" />
+    <ClCompile Include="Source\Enemy\EnemyService.cpp" />
+    <ClCompile Include="Source\Enemy\EnemyView.cpp" />
     <ClCompile Include="Source\Event\EventService.cpp" />
+    <ClCompile Include="Source\Gameplay\GameplayController.cpp" />
+    <ClCompile Include="Source\Gameplay\GameplayService.cpp" />
+    <ClCompile Include="Source\Gameplay\GameplayView.cpp" />
     <ClCompile Include="Source\Main\GameService.cpp" />
     <ClCompile Include="Source\Graphics\GraphicService.cpp" />
     <ClCompile Include="Source\Player\PlayerService.cpp" />
@@ -146,7 +156,18 @@
     <ClCompile Include="Source\UI\UIService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Enemy\Controllers\SubZeroController.h" />
+    <ClInclude Include="Header\Enemy\Controllers\ThunderSnakeController.h" />
+    <ClInclude Include="Header\Enemy\Controllers\ZapperController.h" />
+    <ClInclude Include="Header\Enemy\EnemyConfig.h" />
+    <ClInclude Include="Header\Enemy\EnemyController.h" />
+    <ClInclude Include="Header\Enemy\EnemyModel.h" />
+    <ClInclude Include="Header\Enemy\EnemyService.h" />
+    <ClInclude Include="Header\Enemy\EnemyView.h" />
     <ClInclude Include="Header\Event\EventService.h" />
+    <ClInclude Include="Header\Gameplay\GameplayController.h" />
+    <ClInclude Include="Header\Gameplay\GameplayService.h" />
+    <ClInclude Include="Header\Gameplay\GameplayView.h" />
     <ClInclude Include="Header\Main\GameService.h" />
     <ClInclude Include="Header\Graphics\GraphicService.h" />
     <ClInclude Include="Header\Player\PlayerService.h" />
