@@ -34,7 +34,5 @@ namespace Elements
             void Update();
             void Render();
 		};
-
-
 	}
 }

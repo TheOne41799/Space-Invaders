@@ -50,6 +50,6 @@ namespace Elements
 		void BunkerView::Render()
 		{
 			gameWindow->draw(bunkerSprite);
-		}
+		}		
 	}
 }
