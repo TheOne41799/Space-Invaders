@@ -26,7 +26,7 @@ namespace Bullet
         BulletController(BulletType type);
         virtual ~BulletController() override;
 
-        void Initialize(sf::Vector2f position, Bullet::MovementDirection direction) override;
+        void Initialize(sf::Vector2f position, MovementDirection direction) override;
         void Update() override;
         void Render() override;
 
