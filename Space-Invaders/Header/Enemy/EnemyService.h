@@ -23,8 +23,6 @@ namespace Enemy
 		EnemyController* CreateEnemy(EnemyType enemyType);
 		void Destroy();
 
-
-
 	public:
 		EnemyService();
 		virtual ~EnemyService();

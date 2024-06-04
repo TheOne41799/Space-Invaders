@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-//#include "PlayerController.h" //Use forward declaration instead
 
 
 namespace Player
@@ -10,7 +9,6 @@ namespace Player
 	class PlayerView
 	{
 	private:
-		const sf::String playerTexturePath = "assets/textures/player_ship.png";
 		const float playerSpriteWidth = 60.0f;
 		const float playerSpriteHeight = 60.0f;
 
