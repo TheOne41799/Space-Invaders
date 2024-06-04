@@ -1,12 +1,16 @@
 #include "../../Header/Enemy/EnemyController.h"
 #include "../../Header/Enemy/EnemyView.h"
 #include "../../Header/Enemy/EnemyModel.h"
+#include "../../header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Bullet/BulletConfig.h"
 
 
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Time;
+	using namespace Bullet;
 
 
 	EnemyController::EnemyController(EnemyType type)
@@ -31,6 +35,8 @@ namespace Enemy
 	void EnemyController::Update()
 	{
 		Move();
+		UpdateFireTimer();
+		ProcessBulletFire();
 		enemyView->Update();
 		HandleOutOfBounds();
 	}
@@ -39,6 +45,20 @@ namespace Enemy
 	{
 		enemyView->Render();
 	}	
+
+	void EnemyController::UpdateFireTimer()
+	{
+		elapsedFireDuration += ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+	}
+
+	void EnemyController::ProcessBulletFire()
+	{
+		if (elapsedFireDuration >= rateOfFire)
+		{
+			FireBullet();
+			elapsedFireDuration = 0.f;
+		}
+	}
 
 	sf::Vector2f EnemyController::GetRandomInitialPosition()
 	{

@@ -14,8 +14,15 @@ namespace Enemy
 	class EnemyController
 	{
 	protected:
+		float rateOfFire = 3.f;
+		float elapsedFireDuration = 0.f;
+
 		EnemyModel* enemyModel;
 		EnemyView* enemyView;
+
+		void UpdateFireTimer();
+		void ProcessBulletFire();
+		virtual void FireBullet() = 0;
 
 		virtual void Move() = 0;
 

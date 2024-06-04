@@ -133,6 +133,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Bullet\BulletController.cpp" />
+    <ClCompile Include="Source\Bullet\BulletModel.cpp" />
+    <ClCompile Include="Source\Bullet\BulletService.cpp" />
+    <ClCompile Include="Source\Bullet\BulletView.cpp" />
+    <ClCompile Include="Source\Bullet\Controllers\FrostBulletController.cpp" />
+    <ClCompile Include="Source\Bullet\Controllers\LaserBulletController.cpp" />
+    <ClCompile Include="Source\Bullet\Controllers\TorpedoeController.cpp" />
     <ClCompile Include="Source\Element\Bunker\BunkerController.cpp" />
     <ClCompile Include="Source\Element\Bunker\BunkerModel.cpp" />
     <ClCompile Include="Source\Element\Bunker\BunkerView.cpp" />
@@ -156,12 +163,21 @@
     <ClCompile Include="Source\Player\PlayerModel.cpp" />
     <ClCompile Include="Source\Player\PlayerView.cpp" />
     <ClCompile Include="Source\Global\ServiceLocator.cpp" />
+    <ClCompile Include="Source\Projectile\IProjectile.cpp" />
     <ClCompile Include="Source\Sound\SoundService.cpp" />
     <ClCompile Include="Source\Time\TimeService.cpp" />
     <ClCompile Include="Source\UI\MainMenu\MainMenuUIController.cpp" />
     <ClCompile Include="Source\UI\UIService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\Bullet\BulletConfig.h" />
+    <ClInclude Include="Header\Bullet\BulletController.h" />
+    <ClInclude Include="Header\Bullet\BulletModel.h" />
+    <ClInclude Include="Header\Bullet\BulletService.h" />
+    <ClInclude Include="Header\Bullet\BulletView.h" />
+    <ClInclude Include="Header\Bullet\Controllers\FrostBulletController.h" />
+    <ClInclude Include="Header\Bullet\Controllers\LaserBulletController.h" />
+    <ClInclude Include="Header\Bullet\Controllers\TorpedoeController.h" />
     <ClInclude Include="Header\Element\Bunker\BunkerController.h" />
     <ClInclude Include="Header\Element\Bunker\BunkerModel.h" />
     <ClInclude Include="Header\Element\Bunker\BunkerView.h" />
@@ -186,6 +202,7 @@
     <ClInclude Include="Header\Player\PlayerModel.h" />
     <ClInclude Include="Header\Player\PlayerView.h" />
     <ClInclude Include="Header\Global\ServiceLocator.h" />
+    <ClInclude Include="Header\Projectile\IProjectile.h" />
     <ClInclude Include="Header\Sound\SoundService.h" />
     <ClInclude Include="Header\Time\TimeService.h" />
     <ClInclude Include="Header\UI\MainMenu\MainMenuUIController.h" />

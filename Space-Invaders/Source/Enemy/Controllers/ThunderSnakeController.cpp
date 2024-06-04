@@ -7,6 +7,8 @@
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Bullet;
+
 
 	namespace Controller
 	{
@@ -129,6 +131,14 @@ namespace Enemy
 			{
 				enemyModel->SetEnemyPosition(currentPosition);
 			}
+		}
+
+		void ThunderSnakeController::FireBullet()
+		{
+			ServiceLocator::GetInstance()->GetBulletService()
+							->SpawnBullet(BulletType::TORPEDOE,
+										  enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
+										  Bullet::MovementDirection::DOWN);
 		}
 	}
 }

@@ -10,6 +10,7 @@ namespace Player
 {
 	using namespace Global;
 	using namespace Event;
+	using namespace Bullet;
 
 
 	PlayerController::PlayerController()
@@ -59,6 +60,11 @@ namespace Player
 		{
 			MoveRight();
 		}
+
+		if (eventService->PressedLeftMouseButton())
+		{
+			FireBullet();
+		}
 	}
 
 	void PlayerController::MoveLeft()
@@ -79,6 +85,14 @@ namespace Player
 
 		currentPlayerPosition.x = std::min(currentPlayerPosition.x, playerModel->rightMostPosition.x);
 		playerModel->SetPlayerPosition(currentPlayerPosition);
+	}
+
+	void PlayerController::FireBullet()
+	{
+		ServiceLocator::GetInstance()->GetBulletService()
+						->SpawnBullet(BulletType::LASER_BULLET,
+									  playerModel->GetPlayerPosition() + playerModel->barrelPositionOffset,
+									  Bullet::MovementDirection::UP);
 	}
 }
 
