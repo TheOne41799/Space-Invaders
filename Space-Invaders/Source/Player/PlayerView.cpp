@@ -1,6 +1,7 @@
 #include "../../Header/Player/PlayerView.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Player/PlayerController.h"
+#include "../../Header/Global/Config.h"
 
 
 namespace Player
@@ -25,7 +26,7 @@ namespace Player
 
 	void PlayerView::InitializePlayerSprite()
 	{
-		if (playerTexture.loadFromFile(playerTexturePath))
+		if (playerTexture.loadFromFile(Config::playerTexturePath))
 		{
 			playerSprite.setTexture(playerTexture);
 			ScalePlayerSprite();

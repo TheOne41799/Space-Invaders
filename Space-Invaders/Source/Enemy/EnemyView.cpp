@@ -3,6 +3,8 @@
 #include "../../Header/Graphics/GraphicService.h"
 #include "../../Header/Enemy/EnemyController.h"
 #include"../../Header/Enemy/EnemyConfig.h"
+#include "../../Header/Global/Config.h"
+
 
 namespace Enemy
 {
@@ -26,21 +28,21 @@ namespace Enemy
 		switch (type)
 		{
 		case::Enemy::EnemyType::SUBZERO:
-			if (enemyTexture.loadFromFile(subZeroTexturePath))
+			if (enemyTexture.loadFromFile(Config::subZeroTexturePath))
 			{
 				enemySprite.setTexture(enemyTexture);
 				ScaleEnemySprite();
 			}
 			break;
 		case::Enemy::EnemyType::ZAPPER:
-			if (enemyTexture.loadFromFile(zapperTexturePath))
+			if (enemyTexture.loadFromFile(Config::zapperTexturePath))
 			{
 				enemySprite.setTexture(enemyTexture);
 				ScaleEnemySprite();
 			}
 			break;
 		case::Enemy::EnemyType::THUNDER_SNAKE:
-			if (enemyTexture.loadFromFile(thunderSnakeTexturePath))
+			if (enemyTexture.loadFromFile(Config::thunderSnakeTexturePath))
 			{
 				enemySprite.setTexture(enemyTexture);
 				ScaleEnemySprite();

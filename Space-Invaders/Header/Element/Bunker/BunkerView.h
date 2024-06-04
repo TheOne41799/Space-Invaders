@@ -21,8 +21,6 @@ namespace Elements
             sf::Texture bunkerTexture;
             sf::Sprite bunkerSprite;
 
-            const sf::String bunkerTexturePath = "assets/textures/bunker.png";
-
             void ScaleSprite();
             void InitializeImage();
 
