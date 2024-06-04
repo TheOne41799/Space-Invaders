@@ -26,6 +26,7 @@ namespace Player
 
 		const sf::Vector2f leftMostPosition = sf::Vector2f(50.0f, 950.0f);
 		const sf::Vector2f rightMostPosition = sf::Vector2f(1800.0f, 950.0f);
+		const sf::Vector2f barrelPositionOffset = sf::Vector2f(20.f, 5.f);
 
 		PlayerModel();
 		~PlayerModel();

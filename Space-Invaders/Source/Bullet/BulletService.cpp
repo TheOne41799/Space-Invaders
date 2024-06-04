@@ -51,8 +51,8 @@ namespace Bullet
 		case::Bullet::BulletType::FROST_BULLET:
 			return new FrostBulletController(Bullet::BulletType::FROST_BULLET);
 
-		case::Bullet::BulletType::TORPEDO:
-			return new TorpedoeController(Bullet::BulletType::TORPEDO);
+		case::Bullet::BulletType::TORPEDOE:
+			return new TorpedoeController(Bullet::BulletType::TORPEDOE);
 		}
 	}
 

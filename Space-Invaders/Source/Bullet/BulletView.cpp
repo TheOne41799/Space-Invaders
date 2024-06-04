@@ -39,7 +39,7 @@ namespace Bullet
 				ScaleImage();
 			}
 			break;
-		case::Bullet::BulletType::TORPEDO:
+		case::Bullet::BulletType::TORPEDOE:
 			if (bulletTexture.loadFromFile(Config::torpedoeTexturePath))
 			{
 				bulletSprite.setTexture(bulletTexture);

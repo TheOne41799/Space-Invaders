@@ -8,6 +8,7 @@
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Bullet;
 
 
 	namespace Controller
@@ -20,6 +21,7 @@ namespace Enemy
 		{
 			EnemyController::Initialize();
 			enemyModel->SetMovementDirection(MovementDirection::DOWN);
+			rateOfFire = subZeroRateOfFire;
 		}
 
 		void SubZeroController::Move()
@@ -40,6 +42,14 @@ namespace Enemy
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			enemyModel->SetEnemyPosition(currentPosition);
+		}
+
+		void SubZeroController::FireBullet()
+		{
+			ServiceLocator::GetInstance()->GetBulletService()
+							->SpawnBullet(BulletType::FROST_BULLET,
+										  enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
+						  				  Bullet::MovementDirection::DOWN);
 		}
 	}
 }

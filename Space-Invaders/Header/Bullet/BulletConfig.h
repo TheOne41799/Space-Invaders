@@ -6,7 +6,7 @@ namespace Bullet
 	enum class BulletType
 	{
 		LASER_BULLET,
-		TORPEDO,
+		TORPEDOE,
 		FROST_BULLET,
 	};
 
