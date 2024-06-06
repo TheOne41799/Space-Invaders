@@ -10,20 +10,41 @@ namespace Enemy
 {
 	using namespace Global;
 	using namespace Graphics;
+	using namespace UI::UIElement;
 
 
-	EnemyView::EnemyView() { }
+	EnemyView::EnemyView() 
+	{ 
+		CreateUIElements();
+	}
 
-	EnemyView::~EnemyView() { }
+	EnemyView::~EnemyView() 
+	{
+		Destroy();
+	}
 
 	void EnemyView::Initialize(EnemyController* controller)
 	{
 		enemyController = controller;
-		gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
-		InitializeEnemySprite(enemyController->GetEnemyType());
+		//gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
+		//InitializeEnemySprite(enemyController->GetEnemyType());
+
+		InitializeImage();
 	}
 
-	void EnemyView::InitializeEnemySprite(EnemyType type)
+	void EnemyView::CreateUIElements()
+	{
+		enemyImage = new ImageView();
+	}
+
+	void EnemyView::InitializeImage()
+	{
+		enemyImage->Initialize(GetEnemyTexturePath(),
+							   enemySpriteWidth, enemySpriteHeight,
+							   enemyController->GetEnemyPosition());
+	}
+
+	/*void EnemyView::InitializeEnemySprite(EnemyType type)
 	{
 		switch (type)
 		{
@@ -56,23 +77,55 @@ namespace Enemy
 			}
 			break;
 		}
-	}
+	}*/
 
-	void EnemyView::ScaleEnemySprite()
+	/*void EnemyView::ScaleEnemySprite()
 	{
 		enemySprite.setScale(
 			static_cast<float>(enemySpriteWidth) / enemySprite.getTexture()->getSize().x,
 			static_cast<float>(enemySpriteHeight) / enemySprite.getTexture()->getSize().y
 		);
-	}
+	}*/
 
 	void EnemyView::Update()
 	{
-		enemySprite.setPosition(enemyController->GetEnemyPosition());
+		//enemySprite.setPosition(enemyController->GetEnemyPosition());
+
+		enemyImage->SetPosition(enemyController->GetEnemyPosition());
+		enemyImage->Update();
 	}
 
 	void EnemyView::Render()
 	{
-		gameWindow->draw(enemySprite);
+		//gameWindow->draw(enemySprite);
+
+		enemyImage->Render();
+	}
+
+	sf::String EnemyView::GetEnemyTexturePath()
+	{
+		switch (enemyController->GetEnemyType())
+		{
+		case::Enemy::EnemyType::ZAPPER:
+			return Config::zapperTexturePath;
+
+		case::Enemy::EnemyType::THUNDER_SNAKE:
+			return Config::thunderSnakeTexturePath;
+
+		case::Enemy::EnemyType::SUBZERO:
+			return Config::subZeroTexturePath;
+
+		case::Enemy::EnemyType::UFO:
+			return Config::ufoTexturePath;
+		}
+	}
+
+	void EnemyView::Destroy()
+	{
+		delete (enemyImage);
 	}
 }
+
+
+
+

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../UI/UIElement/ImageView.h"
 
 
 namespace Player
@@ -12,15 +13,22 @@ namespace Player
 		const float playerSpriteWidth = 60.0f;
 		const float playerSpriteHeight = 60.0f;
 
-		sf::RenderWindow* gameWindow;
+		//sf::RenderWindow* gameWindow;
 
-		sf::Texture playerTexture;
-		sf::Sprite playerSprite;
+		//sf::Texture playerTexture;
+		//sf::Sprite playerSprite;
 
-		void InitializePlayerSprite();
-		void ScalePlayerSprite();
+		//void InitializePlayerSprite();
+		//void ScalePlayerSprite();
 
 		PlayerController* playerController;
+		UI::UIElement::ImageView* playerImage;
+
+		void CreateUIElements();
+		void InitializeImage();
+
+		void Destroy();
+
 
 	public:
 		PlayerView();
