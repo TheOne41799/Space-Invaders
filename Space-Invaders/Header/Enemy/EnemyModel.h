@@ -31,7 +31,7 @@ namespace Enemy
 
 		const sf::Vector2f barrelPositionOffset = sf::Vector2f(20.f, 50.f);
 
-		//const float horizontalMovementSpeed = 50.0f;
+		const float horizontalMovementSpeed = 50.0f;
 		//const float verticalMovementSpeed = 50.0f;
 
 		void Initialize();
