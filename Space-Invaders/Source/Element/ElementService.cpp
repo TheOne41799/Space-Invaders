@@ -39,6 +39,10 @@ namespace Elements
 		}
 	}
 
+	void ElementService::Reset()
+	{
+	}
+
 	void ElementService::Destroy()
 	{
 		for (int i = 0; i < bunkerList.size(); i++)

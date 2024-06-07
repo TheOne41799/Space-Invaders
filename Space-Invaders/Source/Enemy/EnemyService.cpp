@@ -108,6 +108,11 @@ namespace Enemy
 		delete(enemyController);
 	}
 
+	void EnemyService::Reset()
+	{
+		
+	}
+
 	void EnemyService::Destroy()
 	{
 		for (int i = 0; i < enemyList.size(); i++)

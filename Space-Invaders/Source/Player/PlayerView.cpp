@@ -60,6 +60,7 @@ namespace Player
 	void PlayerView::Update()
 	{
 		playerImage->SetPosition(playerController->GetPlayerPosition());
+		playerImage->Update();
 	}
 
 	void PlayerView::Render()
@@ -70,5 +71,10 @@ namespace Player
 	void PlayerView::Destroy()
 	{
 		delete(playerImage);
+	}
+
+	const sf::Sprite& PlayerView::GetPlayerSprite()
+	{
+		return playerImage->GetSprite();
 	}
 }

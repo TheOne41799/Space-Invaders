@@ -33,5 +33,7 @@ namespace Enemy
 
 		EnemyController* SpawnEnemy();
 		void DestroyEnemy(EnemyController* enemyController);
+
+		void Reset();
 	};
 }

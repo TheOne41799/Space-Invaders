@@ -33,7 +33,7 @@ namespace Player
 		bool ProcessBulletCollision(ICollider* otherCollider);
 		bool ProcessPowerupCollision(ICollider* otherCollider);
 		bool ProcessEnemyCollision(ICollider* otherCollider);
-		void UpdateFreezDuration();
+		void UpdateFreezeDuration();
 		void FreezePlayer();
 
 		void UpdateFireDuration();
@@ -62,6 +62,7 @@ namespace Player
 		void EnableTrippleLaser();
 
 		sf::Vector2f GetPlayerPosition();
+		int GetPlayerScore();
 		PlayerState GetPlayerState();
 
 		const sf::Sprite& GetColliderSprite() override;

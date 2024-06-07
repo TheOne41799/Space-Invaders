@@ -69,17 +69,22 @@ namespace Bullet
 												 sf::Vector2f position, MovementDirection direction,
 												 EntityType ownerType)
 	{
-		BulletController* bullet_controller = CreateBullet(bulletType, ownerType);
+		BulletController* bulletController = CreateBullet(bulletType, ownerType);
 
-		bullet_controller->Initialize(position, direction);
-		bulletList.push_back(bullet_controller);
-		return bullet_controller;
+		bulletController->Initialize(position, direction);
+		bulletList.push_back(bulletController);
+		return bulletController;
 	}
 
 	void BulletService::DestroyBullet(BulletController* bullet_controller)
 	{
 		bulletList.erase(std::remove(bulletList.begin(), bulletList.end(), bullet_controller), bulletList.end());
 		delete(bullet_controller);
+	}
+
+	void BulletService::Reset()
+	{
+
 	}
 }
 
