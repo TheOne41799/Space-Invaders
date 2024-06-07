@@ -39,6 +39,8 @@ namespace Bullet
         void Initialize(BulletController* controller);
         void Update();
         void Render();
+
+        const sf::Sprite& GetBulletSprite();
     };
 }
 

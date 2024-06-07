@@ -331,16 +331,17 @@ namespace Player
 
 	void PlayerController::FireBullet(sf::Vector2f position)
 	{
-		ServiceLocator::GetInstance()->GetBulletService()->SpawnBullet(BulletType::LASER_BULLET,
+		//Adjusted
+		/*ServiceLocator::GetInstance()->GetBulletService()->SpawnBullet(BulletType::LASER_BULLET,
 																	   position,
 																	   Bullet::MovementDirection::UP,
-																	   playerModel->GetEntityType());
+																	   playerModel->GetEntityType());*/
 
 		//original
-		/*ServiceLocator::GetInstance()->GetBulletService()->SpawnBullet(BulletType::LASER_BULLET,
+		ServiceLocator::GetInstance()->GetBulletService()->SpawnBullet(BulletType::LASER_BULLET,
 																	   playerModel->GetEntityType(),
 																	   position,
-																	   Bullet::MovementDirection::UP);*/
+																	   Bullet::MovementDirection::UP);
 	}
 }
 

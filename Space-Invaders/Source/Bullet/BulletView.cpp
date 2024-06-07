@@ -93,6 +93,11 @@ namespace Bullet
 		bulletImage->Render();
 	}
 
+	const sf::Sprite& BulletView::GetBulletSprite()
+	{
+		// TODO: insert return statement here
+	}
+
 	sf::String BulletView::GetBulletTexturePath()
 	{
 		switch (bulletController->GetBulletType())
