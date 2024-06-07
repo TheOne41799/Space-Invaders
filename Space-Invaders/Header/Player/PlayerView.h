@@ -37,5 +37,7 @@ namespace Player
 		void Initialize(PlayerController* controller);
 		void Update();
 		void Render();
+
+		const sf::Sprite& GetPlayerSprite();
 	};
 }
