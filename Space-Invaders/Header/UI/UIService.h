@@ -1,5 +1,6 @@
 #pragma once
 #include "MainMenu/MainMenuUIController.h"
+#include "Interface/IUIController.h"
 
 
 namespace UI
@@ -13,6 +14,8 @@ namespace UI
 		void InitializeControllers();
 		void Destroy();
 
+		Interface::IUIController* GetCurrentUIController();
+
 	public:
 		UIService();
 		~UIService();
@@ -20,5 +23,7 @@ namespace UI
 		void Initialize();
 		void Update();
 		void Render();
+
+		void ShowScreen();
 	};
 }

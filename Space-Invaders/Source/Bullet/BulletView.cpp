@@ -8,20 +8,41 @@
 namespace Bullet
 {
 	using namespace Global;
+	using namespace UI::UIElement;
 
 
-	BulletView::BulletView() {  }
+	BulletView::BulletView() 
+	{  
+		CreateUIElements();
+	}
 
-	BulletView::~BulletView() { }
+	BulletView::~BulletView() 
+	{ 
+		Destroy();
+	}
 
 	void BulletView::Initialize(BulletController* controller)
 	{
 		bulletController = controller;
-		gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
-		InitializeImage(bulletController->GetBulletType());
+		//gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
+		//InitializeImage(bulletController->GetBulletType());
+
+		InitializeImage();
 	}
 
-	void BulletView::InitializeImage(BulletType type)
+	void BulletView::CreateUIElements()
+	{
+		bulletImage = new ImageView();
+	}
+
+	void BulletView::InitializeImage()
+	{
+		bulletImage->Initialize(GetBulletTexturePath(),
+								bulletSpriteWidth, bulletSpriteHeight, 
+								bulletController->GetProjectilePosition());
+	}
+
+	/*void BulletView::InitializeImage(BulletType type)
 	{
 		switch (type)
 		{
@@ -55,15 +76,40 @@ namespace Bullet
 			static_cast<float>(bulletSpriteWidth) / bulletSprite.getTexture()->getSize().x,
 			static_cast<float>(bulletSpriteHeight) / bulletSprite.getTexture()->getSize().y
 		);
-	}
+	}*/
 
 	void BulletView::Update()
 	{
-		bulletSprite.setPosition(bulletController->GetProjectilePosition());
+		//bulletSprite.setPosition(bulletController->GetProjectilePosition());
+
+		bulletImage->SetPosition(bulletController->GetProjectilePosition());
+		bulletImage->Update();
 	}
 
 	void BulletView::Render()
 	{
-		gameWindow->draw(bulletSprite);
+		//gameWindow->draw(bulletSprite);
+
+		bulletImage->Render();
+	}
+
+	sf::String BulletView::GetBulletTexturePath()
+	{
+		switch (bulletController->GetBulletType())
+		{
+		case::Bullet::BulletType::LASER_BULLET:
+			return Config::laserBulletTexturePath;
+
+		case::Bullet::BulletType::FROST_BULLET:
+			return Config::frostBeamTexturePath;
+
+		case::Bullet::BulletType::TORPEDOE:
+			return Config::torpedoeTexturePath;
+		}
+	}
+
+	void BulletView::Destroy()
+	{
+		delete (bulletImage);
 	}
 }
