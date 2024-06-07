@@ -7,7 +7,7 @@ namespace Powerup
 {
     class PowerupController;
 
-    enum class PowerupType;
+    //enum class PowerupType;
 
 
     class PowerupView
@@ -39,5 +39,7 @@ namespace Powerup
         void Initialize(PowerupController* controller);
         void Update();
         void Render();
+
+        const sf::Sprite& GetPowerupSprite();
     };
 }

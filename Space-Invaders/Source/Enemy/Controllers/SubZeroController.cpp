@@ -46,10 +46,11 @@ namespace Enemy
 
 		void SubZeroController::FireBullet()
 		{
-			ServiceLocator::GetInstance()->GetBulletService()
-							->SpawnBullet(BulletType::FROST_BULLET,
-										  enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
-						  				  Bullet::MovementDirection::DOWN);
+			ServiceLocator::GetInstance()->GetBulletService()->SpawnBullet(
+											BulletType::FROST_BULLET,
+											enemyModel->GetEntityType(),
+											enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
+						  					Bullet::MovementDirection::DOWN);
 		}
 	}
 }

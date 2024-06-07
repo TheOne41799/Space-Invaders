@@ -12,15 +12,17 @@ namespace Enemy
 	class EnemyService
 	{
 	private:
-		const float spawnInterval = 3.0f;
+		const float spawnInterval = 2.0f;
 
 		std::vector<EnemyController*> enemyList;
+		std::vector<EnemyController*> flaggedEnemyList;
 		float spawnTimer;
 
 		void UpdateSpawnTimer();
 		void ProcessEnemySpawn();
 		EnemyType GetRandomEnemyType();
 		EnemyController* CreateEnemy(EnemyType enemyType);
+		void DestroyFlaggedEnemies();
 		void Destroy();
 
 	public:

@@ -99,10 +99,11 @@ namespace Enemy
 
 		void ZapperController::FireBullet()
 		{
-			ServiceLocator::GetInstance()->GetBulletService()
-							->SpawnBullet(BulletType::LASER_BULLET,
-										  enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
-										  Bullet::MovementDirection::DOWN);
+			ServiceLocator::GetInstance()->GetBulletService()->SpawnBullet(
+											BulletType::LASER_BULLET,
+											enemyModel->GetEntityType(),
+											enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
+											Bullet::MovementDirection::DOWN);
 		}
 	}
 }

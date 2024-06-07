@@ -135,10 +135,11 @@ namespace Enemy
 
 		void ThunderSnakeController::FireBullet()
 		{
-			ServiceLocator::GetInstance()->GetBulletService()
-							->SpawnBullet(BulletType::TORPEDOE,
-										  enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
-										  Bullet::MovementDirection::DOWN);
+			ServiceLocator::GetInstance()->GetBulletService()->SpawnBullet(
+											BulletType::TORPEDOE,
+											enemyModel->GetEntityType(),
+											enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
+											Bullet::MovementDirection::DOWN);
 		}
 	}
 }

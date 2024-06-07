@@ -8,11 +8,14 @@ namespace Powerup
     {
         class RapidFireController : public PowerupController
         {
+        protected:
+            void ApplyPowerup() override;
+
         public:
             RapidFireController(PowerupType type);
             virtual ~RapidFireController();
 
-            void OnCollected() override;
+            //void OnCollected() override;
         };
     }
 }

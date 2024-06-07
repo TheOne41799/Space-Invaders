@@ -95,7 +95,7 @@ namespace Bullet
 
 	const sf::Sprite& BulletView::GetBulletSprite()
 	{
-		// TODO: insert return statement here
+		return bulletImage->GetSprite();
 	}
 
 	sf::String BulletView::GetBulletTexturePath()
@@ -103,13 +103,13 @@ namespace Bullet
 		switch (bulletController->GetBulletType())
 		{
 		case::Bullet::BulletType::LASER_BULLET:
-			return Config::laserBulletTexturePath;
+			return BulletConfig::laserBulletTexturePath;
 
 		case::Bullet::BulletType::FROST_BULLET:
-			return Config::frostBeamTexturePath;
+			return BulletConfig::frostBeamTexturePath;
 
 		case::Bullet::BulletType::TORPEDOE:
-			return Config::torpedoeTexturePath;
+			return BulletConfig::torpedoeTexturePath;
 		}
 	}
 

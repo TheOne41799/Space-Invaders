@@ -4,6 +4,10 @@
 #include "../../header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Bullet/BulletConfig.h"
+#include "../../header/Entity/Entity.h"
+#include "../../header/Bullet/BulletController.h"
+#include "../../header/Player/PlayerController.h"
+#include "../../header/Sound/SoundService.h"
 
 
 namespace Enemy
@@ -11,6 +15,10 @@ namespace Enemy
 	using namespace Global;
 	using namespace Time;
 	using namespace Bullet;
+	using namespace Collision;
+	using namespace Entity;
+	using namespace Player;
+	using namespace Sound;
 
 
 	EnemyController::EnemyController(EnemyType type)
@@ -38,7 +46,7 @@ namespace Enemy
 		UpdateFireTimer();
 		ProcessBulletFire();
 		enemyView->Update();
-		HandleOutOfBounds();
+		//HandleOutOfBounds();
 	}
 
 	void EnemyController::Render()
@@ -71,7 +79,7 @@ namespace Enemy
 		return sf::Vector2f(xPosition, yPosition);
 	}
 
-	void EnemyController::HandleOutOfBounds()
+	/*void EnemyController::HandleOutOfBounds()
 	{
 		sf::Vector2f enemyPosition = GetEnemyPosition();
 
@@ -82,7 +90,7 @@ namespace Enemy
 		{
 			ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemy(this);
 		}
-	}
+	}*/
 
 	/*void EnemyController::Move()
 	{
@@ -175,6 +183,35 @@ namespace Enemy
 	EnemyType EnemyController::GetEnemyType()
 	{
 		return enemyModel->GetEnemyType();
+	}
+
+	const sf::Sprite& EnemyController::GetColliderSprite()
+	{
+		return enemyView->GetEnemySprite();
+	}
+
+	void EnemyController::OnCollision(ICollider* otherCollider)
+	{
+		BulletController* bulletController = dynamic_cast<BulletController*>(otherCollider);
+
+		if (bulletController && bulletController->GetOwnerEntityType() != EntityType::ENEMY)
+		{
+			Destroy();
+			return;
+		}
+
+		PlayerController* playerController = dynamic_cast<PlayerController*>(otherCollider);
+
+		if (playerController)
+		{
+			Destroy();
+			return;
+		}
+	}
+
+	void EnemyController::Destroy()
+	{
+		ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemy(this);
 	}
 }
 

@@ -52,5 +52,7 @@ namespace Enemy
 
 		MovementDirection GetMovementDirection();
 		void SetMovementDirection(MovementDirection direction);
+
+		Entity::EntityType GetEntityType();
 	};
 }
