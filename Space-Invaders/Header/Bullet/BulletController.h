@@ -1,6 +1,7 @@
 #pragma once
 #include "..//Projectile/IProjectile.h"
 #include "../Bullet/BulletConfig.h"
+#include "../../Header/Entity/Entity.h"
 
 
 namespace Bullet
@@ -23,7 +24,7 @@ namespace Bullet
         void HandleOutOfBounds();
 
     public:
-        BulletController(BulletType type);
+        BulletController(BulletType type, Entity::EntityType ownerType);
         virtual ~BulletController() override;
 
         void Initialize(sf::Vector2f position, MovementDirection direction) override;
@@ -32,5 +33,7 @@ namespace Bullet
 
         sf::Vector2f GetProjectilePosition() override;
         BulletType GetBulletType();
+
+        Entity::EntityType GetOwnerEntityType();
     };
 }

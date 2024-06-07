@@ -2,6 +2,7 @@
 #include <vector>
 #include "SFML/System/Vector2.hpp"
 #include "../Projectile/IProjectile.h"
+#include "../../header/Entity/Entity.h"
 
 
 namespace Bullet
@@ -17,7 +18,7 @@ namespace Bullet
 	private:
 		std::vector<Projectile::IProjectile*> bulletList;
 
-		BulletController* CreateBullet(BulletType bullet_type);
+		BulletController* CreateBullet(BulletType bulletType, Entity::EntityType ownerType);
 		void Destroy();
 
 	public:
@@ -28,7 +29,10 @@ namespace Bullet
 		void Update();
 		void Render();
 
-		BulletController* SpawnBullet(BulletType bulletType, sf::Vector2f position, MovementDirection direction);
+		BulletController* SpawnBullet(BulletType bulletType, sf::Vector2f position, 
+									  MovementDirection direction,
+									  Entity::EntityType ownerType);
+
 		void DestroyBullet(BulletController* bullet_controller);
 	};
 }

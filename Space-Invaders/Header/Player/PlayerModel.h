@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "../../Header/Entity/Entity.h"
 
 
 namespace Player
@@ -18,6 +19,7 @@ namespace Player
 		sf::Vector2f currentPlayerPosition;
 
 		PlayerState playerState;
+		Entity::EntityType entityType;
 
 		int playerScore = 0;
 
