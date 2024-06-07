@@ -47,13 +47,13 @@ namespace Bullet
 		switch (bulletType)
 		{
 		case::Bullet::BulletType::LASER_BULLET:
-			return new LaserBulletController(Bullet::BulletType::LASER_BULLET);
+			return new LaserBulletController(Bullet::BulletType::LASER_BULLET, ownerType);
 
 		case::Bullet::BulletType::FROST_BULLET:
-			return new FrostBulletController(Bullet::BulletType::FROST_BULLET);
+			return new FrostBulletController(Bullet::BulletType::FROST_BULLET, ownerType);
 
 		case::Bullet::BulletType::TORPEDOE:
-			return new TorpedoeController(Bullet::BulletType::TORPEDOE);
+			return new TorpedoeController(Bullet::BulletType::TORPEDOE, ownerType);
 		}
 	}
 
