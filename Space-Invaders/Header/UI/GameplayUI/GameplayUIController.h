@@ -1,8 +1,8 @@
 #pragma once
-#include "../../Header/UI/Interface/IUIController.h"
-#include "../../Header/UI/UIElement/ImageView.h"
-#include "../../Header/UI/UIElement/ButtonView.h"
-#include "../../Header/UI/UIElement/TextView.h"
+#include "../../UI/Interface/IUIController.h"
+#include "../../UI/UIElement/ImageView.h"
+#include "../../UI/UIElement/ButtonView.h"
+#include "../../UI/UIElement/TextView.h"
 
 
 namespace UI
@@ -12,7 +12,6 @@ namespace UI
 		class GameplayUIController : public Interface::IUIController
 		{
 		private:
-			// Constants:
 			const float fontSize = 40.f;
 
 			const float textYPosition = 15.f;

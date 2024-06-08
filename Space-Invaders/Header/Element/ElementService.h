@@ -29,7 +29,6 @@ namespace Elements
 
 	public:
 		ElementService();
-		//~ElementService();
 		virtual ~ElementService();
 
 		void Initialize();

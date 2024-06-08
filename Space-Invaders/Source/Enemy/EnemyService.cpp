@@ -7,7 +7,7 @@
 #include "../../Header/Enemy/Controllers/ZapperController.h"
 #include "../../Header/Enemy/Controllers/ThunderSnakeController.h"
 #include "../../Header/Enemy/Controllers/UFOController.h"
-#include "../../header/Collision/ICollider.h"
+#include "../../Header/Collision/ICollider.h"
 
 
 namespace Enemy
@@ -38,11 +38,6 @@ namespace Enemy
 		UpdateSpawnTimer();
 		ProcessEnemySpawn();
 
-		/*for (int i = 0; i < enemyList.size(); i++)
-		{
-			enemyList[i]->Update();
-		}*/
-
 		for (EnemyController* enemy : enemyList)
 		{
 			enemy->Update();
@@ -53,11 +48,6 @@ namespace Enemy
 
 	void EnemyService::Render()
 	{
-		/*for (int i = 0; i < enemyList.size(); i++)
-		{
-			enemyList[i]->Render();
-		}*/
-
 		for (EnemyController* enemy : enemyList)
 		{
 			enemy->Render();
@@ -78,6 +68,13 @@ namespace Enemy
 		}
 	}
 
+	EnemyType EnemyService::GetRandomEnemyType()
+	{
+		int randomType = std::rand() % 4;
+
+		return static_cast<Enemy::EnemyType>(randomType);
+	}
+
 	EnemyController* EnemyService::SpawnEnemy()
 	{
 		EnemyController* enemyController = CreateEnemy(GetRandomEnemyType());
@@ -89,15 +86,7 @@ namespace Enemy
 		enemyList.push_back(enemyController);
 
 		return enemyController;
-	}
-
-	EnemyType EnemyService::GetRandomEnemyType()
-	{
-		int randomType = std::rand() % 4;
-
-		//int randomType = std::rand() % (static_cast<int>(Enemy::EnemyType::UFO) + 1);
-		return static_cast<Enemy::EnemyType>(randomType);
-	}
+	}	
 
 	EnemyController* EnemyService::CreateEnemy(EnemyType enemyType)
 	{
@@ -131,12 +120,6 @@ namespace Enemy
 
 	void EnemyService::DestroyEnemy(EnemyController* enemyController)
 	{
-		//enemyList.erase(std::remove(enemyList.begin(), enemyList.end(), enemyController), enemyList.end());
-
-		//printf("Enemy Killed");
-
-		//delete(enemyController);
-
 		dynamic_cast<ICollider*>(enemyController)->DisableCollision();
 		flaggedEnemyList.push_back(enemyController);
 		enemyList.erase(std::remove(enemyList.begin(), enemyList.end(), enemyController), enemyList.end());

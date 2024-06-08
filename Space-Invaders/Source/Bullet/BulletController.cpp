@@ -17,10 +17,10 @@ namespace Bullet
 	using namespace Elements::Bunker;
 
 
-	BulletController::BulletController(BulletType type, EntityType ownerType)
+	BulletController::BulletController(BulletType bulletType, EntityType ownerType)
 	{
 		bulletView = new BulletView();
-		bulletModel = new BulletModel(type, ownerType);
+		bulletModel = new BulletModel(bulletType, ownerType);
 	}
 
 	BulletController::~BulletController()
@@ -45,20 +45,7 @@ namespace Bullet
 	void BulletController::Render()
 	{
 		bulletView->Render();
-	}
-
-	void BulletController::UpdateProjectilePosition()
-	{
-		switch (bulletModel->GetMovementDirection())
-		{
-		case::Bullet::MovementDirection::UP:
-			MoveUp();
-			break;
-		case::Bullet::MovementDirection::DOWN:
-			MoveDown();
-			break;
-		}
-	}
+	}	
 
 	void BulletController::MoveUp()
 	{
@@ -95,7 +82,7 @@ namespace Bullet
 	sf::Vector2f BulletController::GetProjectilePosition()
 	{
 		return bulletModel->GetBulletPosition();
-	}
+	}	
 
 	BulletType BulletController::GetBulletType()
 	{
@@ -119,6 +106,19 @@ namespace Bullet
 		ProcessBunkerCollision(otherCollider);
 		ProcessBulletCollision(otherCollider);
 	}
+
+	void BulletController::UpdateProjectilePosition()
+	{
+		switch (bulletModel->GetMovementDirection())
+		{
+		case::Bullet::MovementDirection::UP:
+			MoveUp();
+			break;
+		case::Bullet::MovementDirection::DOWN:
+			MoveDown();
+			break;
+		}
+	}	
 
 	void BulletController::ProcessBulletCollision(ICollider* otherCollider)
 	{

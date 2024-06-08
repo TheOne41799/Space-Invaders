@@ -3,7 +3,7 @@
 
 namespace Player
 {
-	class PlayerController; //This led to a small error - chapter - Using Forward Declarations
+	class PlayerController;
 
 
 	class PlayerService
@@ -19,8 +19,6 @@ namespace Player
 		void Update();
 		void Render();
 
-		//void IncreaseScore(int val);
-		//void DecreaseScore(int val);
 		void IncreaseEnemiesKilled(int val);
 
 		void EnableShield();

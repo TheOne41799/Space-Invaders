@@ -68,7 +68,7 @@ namespace Enemy
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
-			currentPosition.x -= thunderSnakeHorizontalMovementSpeed
+			currentPosition.x -= horizontalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x <= enemyModel->leftMostPosition.x)
@@ -84,7 +84,7 @@ namespace Enemy
 		void ThunderSnakeController::MoveRight()
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
-			currentPosition.x += thunderSnakeHorizontalMovementSpeed
+			currentPosition.x += horizontalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x >= enemyModel->rightMostPosition.x)
@@ -101,10 +101,10 @@ namespace Enemy
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
-			currentPosition.y += thunderSnakeVerticalMovementSpeed
+			currentPosition.y += verticalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
-			currentPosition.x -= thunderSnakeHorizontalMovementSpeed
+			currentPosition.x -= horizontalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x <= enemyModel->leftMostPosition.x)
@@ -121,10 +121,10 @@ namespace Enemy
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
-			currentPosition.y += thunderSnakeVerticalMovementSpeed
+			currentPosition.y += verticalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
-			currentPosition.x += thunderSnakeHorizontalMovementSpeed
+			currentPosition.x += horizontalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x >= enemyModel->rightMostPosition.x)
@@ -148,7 +148,6 @@ namespace Enemy
 
 		void ThunderSnakeController::Destroy()
 		{
-
 			EnemyController::Destroy();
 		}
 	}

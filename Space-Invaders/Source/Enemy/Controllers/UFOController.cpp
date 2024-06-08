@@ -2,8 +2,8 @@
 #include "../../Header/Enemy/EnemyView.h"
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../Header/Enemy/EnemyConfig.h"
-#include "../../Header/Bullet/BulletConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Bullet/BulletConfig.h"
 #include "../../Header/Powerups/PowerupService.h"
 #include "../../Header/Bullet/BulletController.h"
 #include "../../Header/Entity/Entity.h"
@@ -46,13 +46,12 @@ namespace Enemy
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
-			currentPosition.x -= enemyModel->horizontalMovementSpeed
-											 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+			currentPosition.x -= horizontalMovementSpeed
+								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x <= enemyModel->leftMostPosition.x)
 			{
 				enemyModel->SetMovementDirection(MovementDirection::RIGHT);
-				enemyModel->SetReferencePosition(currentPosition);
 			}
 			else
 			{
@@ -64,13 +63,12 @@ namespace Enemy
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
-			currentPosition.x += enemyModel->horizontalMovementSpeed
-											 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+			currentPosition.x += horizontalMovementSpeed
+								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x >= enemyModel->rightMostPosition.x)
 			{
 				enemyModel->SetMovementDirection(MovementDirection::LEFT);
-				enemyModel->SetReferencePosition(currentPosition);
 			}
 			else
 			{

@@ -58,7 +58,6 @@ namespace Enemy
 
 		void SubZeroController::Destroy()
 		{
-
 			EnemyController::Destroy();
 		}
 	}

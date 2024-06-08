@@ -27,6 +27,9 @@ namespace Sound
 		sf::SoundBuffer bufferButtonClick;
 		sf::SoundBuffer bufferBulletFire;
 
+		sf::SoundBuffer bufferPowerupEnabled;
+		sf::SoundBuffer bufferPowerupDisabled;
+
 		void LoadBackgroundMusicFromFile();
 		void LoadSoundFromFile();
 

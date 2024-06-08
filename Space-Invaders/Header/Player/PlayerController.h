@@ -1,16 +1,15 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "../Collision/ICollider.h"
-#include "../../Header/Powerups/PowerupConfig.h"
-#include "../../Header/Player/PlayerModel.h"
+#include "../Powerups/PowerupConfig.h"
+#include "PlayerModel.h"
 
 
 namespace Player
 {
-	enum class PlayerState;
-
 	class PlayerView;
-	//class PlayerModel;
+
+	enum class PlayerState;
 
 
 	class PlayerController : public Collision::ICollider
@@ -65,7 +64,6 @@ namespace Player
 		void EnableTrippleLaser();
 
 		sf::Vector2f GetPlayerPosition();
-		int GetPlayerScore();
 		PlayerState GetPlayerState();
 
 		const sf::Sprite& GetColliderSprite() override;

@@ -23,6 +23,6 @@ namespace Enemy
         RIGHT,
         DOWN,
         LEFT_DOWN,
-        RIGHT_DOWN
+        RIGHT_DOWN,
     };
 }

@@ -1,13 +1,12 @@
 #include "../../header/Gameplay/GameplayView.h"
 #include "../../header/Global/ServiceLocator.h"
-#include "../../header/Graphics/GraphicService.h"
 #include "../../Header/Global/Config.h"
+#include "../../header/Graphics/GraphicService.h"
 
 
 namespace Gameplay
 {
 	using namespace Global;
-	using namespace Graphics;
 	using namespace UI::UIElement;
 
 
@@ -23,27 +22,8 @@ namespace Gameplay
 
 	void GameplayView::Initialize()
 	{
-		//gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
-		//InitializeBackgroundSprite();
-
 		InitializeBackgroundImage();
 	}
-
-	/*void GameplayView::InitializeBackgroundSprite()
-	{
-		if (backgroundTexture.loadFromFile(Config::backgroundTexturePath))
-		{
-			backgroundSprite.setTexture(backgroundTexture);
-			ScaleBackgroundSprite();
-		}
-	}
-	void GameplayView::ScaleBackgroundSprite()
-	{
-		backgroundSprite.setScale(
-			static_cast<float>(gameWindow->getSize().x) / backgroundSprite.getTexture()->getSize().x,
-			static_cast<float>(gameWindow->getSize().y) / backgroundSprite.getTexture()->getSize().y
-		);
-	}*/
 
 	void GameplayView::InitializeBackgroundImage()
 	{
@@ -53,6 +33,8 @@ namespace Gameplay
 									gameWindow->getSize().x,
 									gameWindow->getSize().y,
 									sf::Vector2f(0, 0));
+
+		//background_image->setImageAlpha(background_alpha); -> looks ugly with the transperency
 	}
 
 	void GameplayView::Update()
@@ -62,8 +44,6 @@ namespace Gameplay
 
 	void GameplayView::Render()
 	{
-		//gameWindow->draw(backgroundSprite);
-
 		backgroundImage->Render();
 	}
 }

@@ -1,6 +1,6 @@
 #include "../../Header/Main/GameService.h"
-//#include "../../Header/Graphics/GraphicService.h" //Should this be included?
-//#include "../../Header/Event/EventService.h" //Should this be included?
+#include "../../Header/Graphics/GraphicService.h"
+#include "../../Header/Event/EventService.h"
 
 
 namespace Main
@@ -33,12 +33,6 @@ namespace Main
 		gameWindow = serviceLocator->GetGraphicService()->GetGameWindow();
 	}
 
-	//void GameService::Destroy()
-	//{
-	//	//delete serviceLocator;
-	//	delete gameWindow;
-	//}
-
 	void GameService::Ignite()
 	{
 		serviceLocator = ServiceLocator::GetInstance();
@@ -54,8 +48,6 @@ namespace Main
 	void GameService::Render()
 	{
 		gameWindow->clear();
-
-		//gameWindow->clear(serviceLocator->GetGraphicService()->GetGameWindowColor());
 		serviceLocator->Render();
 		gameWindow->display();
 	}

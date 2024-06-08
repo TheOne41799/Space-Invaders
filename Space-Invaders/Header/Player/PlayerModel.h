@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../../Header/Entity/Entity.h"
-#include "../../Header/UI/GameplayUI/GameplayUIController.h"
+#include "../Entity/Entity.h"
+#include "../UI/GameplayUI/GameplayUIController.h"
 
 
 namespace Player
@@ -10,7 +10,7 @@ namespace Player
 	{
 		ALIVE,
 		FROZEN,
-		DEAD
+		DEAD,
 	};
 
 
@@ -27,10 +27,8 @@ namespace Player
 
 		sf::Vector2f currentPlayerPosition;
 
-		PlayerState playerState;
 		Entity::EntityType entityType;
-
-		int playerScore = 0;
+		PlayerState playerState;
 
 		static int playerLives;
 		static int enemiesKilled;
@@ -40,12 +38,9 @@ namespace Player
 		bool bTrippleLaser;
 
 	public:
-		const float playerMovementSpeed = 250.0f;
-
 		const sf::Vector2f leftMostPosition = sf::Vector2f(50.0f, 950.0f);
 		const sf::Vector2f rightMostPosition = sf::Vector2f(1800.0f, 950.0f);
 		const sf::Vector2f barrelPositionOffset = sf::Vector2f(20.f, 5.f);
-
 		const sf::Vector2f secondWeaponPositionOffset = sf::Vector2f(45.f, 0.f);
 		const sf::Vector2f thirdWeaponPositionOffset = sf::Vector2f(-45.f, 0.f);
 
@@ -53,20 +48,14 @@ namespace Player
 		const float rapidFirePowerupDuration = 10.f;
 		const float trippleLaserPowerupDuration = 10.f;
 
-		const float freezeDuration = 2.f;
+		const float freezeDuration = 1.5f;
 
 		const float fireCooldownDuration = 0.2f;
 		const float rapidFireCooldownDuration = 0.05f;
 		const float trippleLaserPositionOffset = 30.f;
 
+		const float playerMovementSpeed = 250.0f;
 		static const int invinciblePlayerAlpha = 170.f;
-
-		float elapsedShieldDuration;
-		float elapsedRapidFireDuration;
-		float elapsedTrippleLaserDuration;
-
-		float elapsedFireDuration;
-		float elapsedFreezeDuration;
 
 		PlayerModel();
 		~PlayerModel();
@@ -76,9 +65,6 @@ namespace Player
 
 		sf::Vector2f GetPlayerPosition();
 		void SetPlayerPosition(sf::Vector2f position);
-
-		int GetPlayerScore();
-		void SetPlayerScore(int score);
 
 		PlayerState GetPlayerState();
 		void SetPlayerState(PlayerState state);

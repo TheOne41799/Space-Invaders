@@ -14,9 +14,10 @@ namespace UI
 
 		void CreateControllers();
 		void InitializeControllers();
-		void Destroy();
 
 		Interface::IUIController* GetCurrentUIController();
+
+		void Destroy();		
 
 	public:
 		UIService();

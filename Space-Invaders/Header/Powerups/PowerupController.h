@@ -1,6 +1,6 @@
 #pragma once
-#include "../../Header/Collectible/ICollectible.h"
-#include "../../Header/Collision/ICollider.h"
+#include "../Collectible/ICollectible.h"
+#include "../Collision/ICollider.h"
 
 
 namespace Powerup

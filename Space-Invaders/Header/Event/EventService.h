@@ -19,16 +19,16 @@ namespace Event
 		sf::Event gameEvent;
 		sf::RenderWindow* gameWindow;
 
-		bool IsGameWindowOpen();
-		bool GameWindowWasClosed();
-		bool HasQuitGame();
-
 		ButtonState leftMouseButtonState;
 		ButtonState rightMouseButtonState;
 		ButtonState leftArrowButtonState;
 		ButtonState rightArrowButtonState;
 		ButtonState A_ButtonState;
 		ButtonState D_ButtonState;
+
+		bool IsGameWindowOpen();
+		bool GameWindowWasClosed();
+		bool HasQuitGame();		
 
 		void UpdateMouseButtonState(ButtonState& currentButtonState, sf::Mouse::Button mouseButton);
 		void UpdateKeyboardButtonState(ButtonState& currentButtonState, sf::Keyboard::Key keyboardButton);
@@ -40,16 +40,15 @@ namespace Event
 		void Initialize();
 		void Update();
 		void ProcessEvents();
+
 		bool PressedEscapeKey();
 		bool IsKeyboardEvent();
-
 		bool PressedLeftKey();
 		bool PressedRightKey();
-
-		bool PressedLeftMouseButton();
-		bool PressedRightMouseButton();
-
 		bool PressedAKey();
 		bool PressedDKey();
+
+		bool PressedLeftMouseButton();
+		bool PressedRightMouseButton();		
 	};
 }

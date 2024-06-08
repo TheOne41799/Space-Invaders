@@ -2,8 +2,8 @@
 #include "../../header/Enemy/EnemyView.h"
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../Header/Enemy/EnemyConfig.h"
-#include "../../Header/Bullet/BulletConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Bullet/BulletConfig.h"
 
 
 namespace Enemy

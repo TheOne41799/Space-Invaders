@@ -13,8 +13,6 @@ namespace Powerup
 
         ShieldController::~ShieldController() {}
 
-        void ShieldController::OnCollected() {};
-
         void ShieldController::ApplyPowerup()
         {
             ServiceLocator::GetInstance()->GetPlayerService()->EnableShield();

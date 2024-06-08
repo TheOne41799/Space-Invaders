@@ -11,7 +11,6 @@
 namespace Bullet
 {
 	using namespace Controller;
-	//using namespace Projectile;
 	using namespace Entity;
 	using namespace Global;
 	using namespace Collision;
@@ -90,11 +89,6 @@ namespace Bullet
 
 	void BulletService::Destroy()
 	{
-		/*for (int i = 0; i < bulletList.size(); i++)
-		{
-			delete (bulletList[i]);
-		}*/
-
 		for (int i = 0; i < bulletList.size(); i++)
 		{
 			if (!IsValidBullet(i, bulletList))
@@ -111,19 +105,8 @@ namespace Bullet
 		bulletList.clear();
 	}
 
-	/*BulletController* BulletService::SpawnBullet(BulletType bulletType,
-												 sf::Vector2f position, MovementDirection direction,
-												 EntityType ownerType)
-	{
-		BulletController* bulletController = CreateBullet(bulletType, ownerType);
-
-		bulletController->Initialize(position, direction);
-		bulletList.push_back(bulletController);
-		return bulletController;
-	}*/
-
 	BulletController* BulletService::SpawnBullet(BulletType bulletType,
-												 Entity::EntityType ownerType,
+												 EntityType ownerType,
 												 sf::Vector2f position,
 												 MovementDirection direction)
 	{
@@ -136,22 +119,8 @@ namespace Bullet
 		return bulletController;
 	}
 
-	/*void BulletService::DestroyBullet(BulletController* bullet_controller)
-	{
-		bulletList.erase(std::remove(bulletList.begin(), bulletList.end(), bullet_controller), bulletList.end());
-		delete(bullet_controller);
-	}*/
-
 	void BulletService::DestroyBullet(BulletController* bulletController)
 	{
-		/*if (std::find(flaggedBulletList.begin(), flaggedBulletList.end(), bulletController)
-					  == flaggedBulletList.end())
-		{
-			flaggedBulletList.push_back(bulletController);
-
-			bulletList.erase(std::remove(bulletList.begin(), bulletList.end(), bulletController), bulletList.end());
-		}*/
-
 		dynamic_cast<ICollider*>(bulletController)->DisableCollision();
 
 		flaggedBulletList.push_back(bulletController);

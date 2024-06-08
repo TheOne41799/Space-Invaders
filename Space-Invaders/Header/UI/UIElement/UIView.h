@@ -12,6 +12,7 @@ namespace UI
 			HIDDEN,
 		};
 
+
 		class UIView
 		{
 		protected:

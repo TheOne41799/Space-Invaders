@@ -26,7 +26,6 @@ namespace Main
 
 		void Initialize();
 		void InitializeVariables();
-		//void Destroy();
 
 		void ShowMainMenu();
 

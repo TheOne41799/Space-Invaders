@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Header/Powerups/PowerupController.h"
+#include "../../Powerups/PowerupController.h"
 
 
 namespace Powerup
@@ -15,7 +15,7 @@ namespace Powerup
             ShieldController(PowerupType type);
             virtual ~ShieldController();
 
-            void OnCollected() override;
+            //void OnCollected() override;
         };
     }
 }

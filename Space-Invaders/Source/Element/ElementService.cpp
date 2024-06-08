@@ -1,6 +1,6 @@
 #include "../../Header/Element/ElementService.h"
-#include "../../header/Collision/ICollider.h"
-#include "../../header/Global/ServiceLocator.h"
+#include "../../Header/Collision/ICollider.h"
+#include "../../Header/Global/ServiceLocator.h"
 
 
 namespace Elements
@@ -20,14 +20,6 @@ namespace Elements
 
 	void ElementService::Initialize()
 	{
-		/*for (int i = 0; i < bunkerDataList.size(); i++)
-		{
-			Bunker::BunkerController* bunker_controller = new Bunker::BunkerController();
-
-			bunker_controller->Initialize(bunkerDataList[i]);
-			bunkerList.push_back(bunker_controller);
-		}*/
-
 		SpawnBunkers();
 	}
 
@@ -82,11 +74,6 @@ namespace Elements
 
 	void ElementService::Destroy()
 	{
-		/*for (int i = 0; i < bunkerList.size(); i++)
-		{
-			delete(bunkerList[i]);
-		}*/
-
 		for (int i = 0; i < bunkerList.size(); i++)
 		{
 			ServiceLocator::GetInstance()->GetCollisionService()

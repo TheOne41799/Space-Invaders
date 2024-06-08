@@ -22,7 +22,7 @@ namespace Bullet
 
     public:
 
-        BulletModel(BulletType type, Entity::EntityType ownerType);
+        BulletModel(BulletType bulletType, Entity::EntityType ownerType);
         ~BulletModel();
 
         void Initialize(sf::Vector2f position, MovementDirection direction);
@@ -32,7 +32,6 @@ namespace Bullet
 
         BulletType GetBulletType();
         Entity::EntityType GetOwnerEntityType();
-        //void SetBulletType(BulletType type);
 
         MovementDirection GetMovementDirection();
         void SetMovementDirection(MovementDirection direction);

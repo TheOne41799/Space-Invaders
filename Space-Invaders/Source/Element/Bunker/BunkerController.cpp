@@ -1,10 +1,9 @@
 #include "../../Header/Element/Bunker/BunkerController.h"
 #include "../../Header/Element/Bunker/BunkerView.h"
-#include "../../../header/Bullet/BulletController.h"
-#include "../../../header/Entity/Entity.h"
-#include "../../header/Global/ServiceLocator.h"
-#include "../../../header/Bullet/BulletConfig.h"
-
+#include "../../../Header/Bullet/BulletController.h"
+#include "../../../Header/Entity/Entity.h"
+#include "../../Header/Global/ServiceLocator.h"
+#include "../../../Header/Bullet/BulletConfig.h"
 
 
 namespace Elements

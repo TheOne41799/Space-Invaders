@@ -25,9 +25,9 @@ namespace Player
 	{
 		playerState = PlayerState::ALIVE;
 		currentPlayerPosition = initialPlayerPosition;
-		//playerScore = 0;
 
 		playerLives = maxPlayerLives;
+
 		enemiesKilled = 0;
 
 		bShield = false;
@@ -43,16 +43,6 @@ namespace Player
 	void PlayerModel::SetPlayerPosition(sf::Vector2f position)
 	{
 		currentPlayerPosition = position;
-	}
-
-	int PlayerModel::GetPlayerScore()
-	{
-		return playerScore;
-	}
-
-	void PlayerModel::SetPlayerScore(int score)
-	{
-		playerScore = score;
 	}
 
 	PlayerState PlayerModel::GetPlayerState()

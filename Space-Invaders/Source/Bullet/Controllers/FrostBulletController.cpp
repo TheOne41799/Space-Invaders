@@ -6,8 +6,8 @@ namespace Bullet
 {
 	namespace Controller
 	{
-		FrostBulletController::FrostBulletController(BulletType type, Entity::EntityType ownerType)
-													 : BulletController(type, ownerType) { }
+		FrostBulletController::FrostBulletController(BulletType bulletType, Entity::EntityType ownerType)
+													 : BulletController(bulletType, ownerType) { }
 
 		FrostBulletController::~FrostBulletController() { }
 

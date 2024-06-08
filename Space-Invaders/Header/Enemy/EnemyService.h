@@ -27,16 +27,15 @@ namespace Enemy
 
 	public:
 		EnemyService();
-		//virtual ~EnemyService();
 		~EnemyService();
 
 		void Initialize();
 		void Update();
 		void Render();
 
+		void Reset();
+
 		EnemyController* SpawnEnemy();
 		void DestroyEnemy(EnemyController* enemyController);
-
-		void Reset();
 	};
 }

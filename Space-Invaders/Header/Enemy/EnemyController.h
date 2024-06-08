@@ -31,7 +31,6 @@ namespace Enemy
 		virtual void Move() = 0;
 
 		sf::Vector2f GetRandomInitialPosition();
-		//void HandleOutOfBounds();
 
 		virtual void Destroy();
 

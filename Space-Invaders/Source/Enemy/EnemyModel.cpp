@@ -7,8 +7,6 @@ namespace Enemy
 	EnemyModel::EnemyModel(EnemyType type)
 	{
 		enemyType = type;
-		//enemyState = EnemyState::PATROLLING;
-		//movementDirection = MovementDirection::RIGHT;
 		entityType = Entity::EntityType::ENEMY;
 	}
 

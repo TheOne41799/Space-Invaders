@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Header/Powerups/PowerupController.h"
+#include "../../Powerups/PowerupController.h"
 
 
 namespace Powerup
@@ -14,8 +14,6 @@ namespace Powerup
         public:
             OutscalBombController(PowerupType type);
             virtual ~OutscalBombController();
-
-            //void OnCollected() override;
         };
     }
 }
