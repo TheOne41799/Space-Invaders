@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../../Header/Entity/Entity.h"
+#include "../../Header/UI/GameplayUI/GameplayUIController.h"
 
 
 namespace Player
@@ -16,13 +17,23 @@ namespace Player
 	class PlayerModel
 	{
 	private:
+		friend class PlayerController;
+
+		friend void UI::GameplayUI::GameplayUIController::UpdateEnemiesKilledText();
+		friend void UI::GameplayUI::GameplayUIController::DrawPlayerLives();
+
 		const sf::Vector2f initialPlayerPosition = sf::Vector2f(950.0f, 950.0f);
+		const int maxPlayerLives = 3;
+
 		sf::Vector2f currentPlayerPosition;
 
 		PlayerState playerState;
 		Entity::EntityType entityType;
 
 		int playerScore = 0;
+
+		static int playerLives;
+		static int enemiesKilled;
 
 		bool bShield;
 		bool bRapidFire;
@@ -47,6 +58,8 @@ namespace Player
 		const float fireCooldownDuration = 0.2f;
 		const float rapidFireCooldownDuration = 0.05f;
 		const float trippleLaserPositionOffset = 30.f;
+
+		static const int invinciblePlayerAlpha = 170.f;
 
 		float elapsedShieldDuration;
 		float elapsedRapidFireDuration;

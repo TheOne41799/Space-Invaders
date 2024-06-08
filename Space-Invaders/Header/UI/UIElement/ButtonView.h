@@ -27,9 +27,9 @@ namespace UI
 			virtual ~ButtonView();
 
 			virtual void Initialize(sf::String title,
-				sf::String texturePath,
-				float buttonWidth, float buttonHeight,
-				sf::Vector2f position);
+									sf::String texturePath,
+									float buttonWidth, float buttonHeight,
+									sf::Vector2f position);
 			virtual void Update() override;
 			virtual void Render() override;
 

@@ -2,11 +2,13 @@
 #include "../../header/Enemy/EnemyView.h"
 #include "../../header/Enemy/EnemyModel.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Bullet/BulletConfig.h"
 
 
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Time;
 	using namespace Bullet;
 
 
@@ -20,6 +22,8 @@ namespace Enemy
 		{
 			EnemyController::Initialize();
 			enemyModel->SetMovementDirection(GetInitialMovementDirection());
+
+			horizontalMovementSpeed = thunderSnakeHorizontalMovementSpeed;
 		}
 
 		MovementDirection ThunderSnakeController::GetInitialMovementDirection()
@@ -140,6 +144,12 @@ namespace Enemy
 											enemyModel->GetEntityType(),
 											enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
 											Bullet::MovementDirection::DOWN);
+		}
+
+		void ThunderSnakeController::Destroy()
+		{
+
+			EnemyController::Destroy();
 		}
 	}
 }

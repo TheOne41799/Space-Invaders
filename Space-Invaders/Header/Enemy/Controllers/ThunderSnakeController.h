@@ -20,6 +20,7 @@ namespace Enemy
             void MoveDiagonalRight();
 
             void FireBullet() override;
+            void Destroy() override;
 
             MovementDirection GetInitialMovementDirection();
 

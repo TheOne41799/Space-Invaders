@@ -26,19 +26,7 @@ namespace Enemy
 		void UFOController::Initialize()
 		{
 			EnemyController::Initialize();
-		}
-
-		void UFOController::FireBullet()
-		{
-		}
-
-		Powerup::PowerupType UFOController::GetRandomPowerupType()
-		{
-			std::srand(static_cast<unsigned int>(std::time(nullptr)));
-
-			int random_value = std::rand() % (static_cast<int>(Powerup::PowerupType::OUTSCAL_BOMB) + 1);
-			return static_cast<Powerup::PowerupType>(random_value);
-		}
+		}		
 
 		void UFOController::Move()
 		{
@@ -52,7 +40,6 @@ namespace Enemy
 				MoveRight();
 				break;
 			}
-
 		}
 
 		void UFOController::MoveLeft()
@@ -91,6 +78,18 @@ namespace Enemy
 			}
 		}
 
+		void UFOController::FireBullet()
+		{
+		}
+
+		Powerup::PowerupType UFOController::GetRandomPowerupType()
+		{
+			std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+			int random_value = std::rand() % (static_cast<int>(Powerup::PowerupType::OUTSCAL_BOMB) + 1);
+			return static_cast<Powerup::PowerupType>(random_value);
+		}
+
 		void UFOController::OnCollision(ICollider* otherCollider)
 		{
 			EnemyController::OnCollision(otherCollider);
@@ -103,6 +102,11 @@ namespace Enemy
 								->SpawnPowerup(GetRandomPowerupType(), enemyModel->GetEnemyPosition());
 				return;
 			}
+		}
+
+		void UFOController::Destroy()
+		{
+			EnemyController::Destroy();
 		}
 	}
 }

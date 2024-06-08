@@ -77,4 +77,10 @@ namespace Player
 	{
 		return playerImage->GetSprite();
 	}
+
+	void PlayerView::SetPlayerHighlight(bool b_highlight)
+	{
+		if (b_highlight) playerImage->SetImageAlpha(PlayerModel::invinciblePlayerAlpha);
+		else playerImage->SetImageAlpha(255);
+	}
 }

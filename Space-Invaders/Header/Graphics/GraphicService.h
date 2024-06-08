@@ -12,12 +12,13 @@ namespace Graphics
 		const int gameWindowWidth = 1920;
 		const int gameWindowHeight = 1080;
 
-		const sf::Color gameWindowColor = sf::Color::Blue;
+		const int frameRate = 60;
+
+		//const sf::Color gameWindowColor = sf::Color::Blue;
+		const sf::Color gameWindowColor = sf::Color(200, 200, 0, 255);
 
 		sf::VideoMode* videoMode;
 		sf::RenderWindow* gameWindow;
-
-		const int frameRate = 60;
 
 		void SetVideoMode();
 		void OnDestroy();
@@ -32,6 +33,7 @@ namespace Graphics
 		void Update();
 		void Render();
 		bool IsGameWindowOpen();
+		void SetFrameRate(int);
 
 		sf::RenderWindow* GetGameWindow();
 		sf::Color GetGameWindowColor();

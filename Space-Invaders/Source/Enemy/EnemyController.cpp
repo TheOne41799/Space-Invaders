@@ -13,7 +13,7 @@
 namespace Enemy
 {
 	using namespace Global;
-	using namespace Time;
+	//using namespace Time;
 	using namespace Bullet;
 	using namespace Collision;
 	using namespace Entity;
@@ -211,6 +211,7 @@ namespace Enemy
 
 	void EnemyController::Destroy()
 	{
+		ServiceLocator::GetInstance()->GetPlayerService()->IncreaseEnemiesKilled(1);
 		ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemy(this);
 	}
 }

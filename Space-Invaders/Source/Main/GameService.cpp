@@ -18,7 +18,7 @@ namespace Main
 
 	GameService::~GameService()
 	{
-		Destroy();
+		//Destroy();
 	}
 
 	void GameService::Initialize()
@@ -33,11 +33,11 @@ namespace Main
 		gameWindow = serviceLocator->GetGraphicService()->GetGameWindow();
 	}
 
-	void GameService::Destroy()
-	{
-		//delete serviceLocator;
-		delete gameWindow;
-	}
+	//void GameService::Destroy()
+	//{
+	//	//delete serviceLocator;
+	//	delete gameWindow;
+	//}
 
 	void GameService::Ignite()
 	{
@@ -53,7 +53,9 @@ namespace Main
 
 	void GameService::Render()
 	{
-		gameWindow->clear(serviceLocator->GetGraphicService()->GetGameWindowColor());
+		gameWindow->clear();
+
+		//gameWindow->clear(serviceLocator->GetGraphicService()->GetGameWindowColor());
 		serviceLocator->Render();
 		gameWindow->display();
 	}

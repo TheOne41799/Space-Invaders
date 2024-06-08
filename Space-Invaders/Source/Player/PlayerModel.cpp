@@ -3,6 +3,10 @@
 
 namespace Player
 {
+	int PlayerModel::playerLives;
+	int PlayerModel::enemiesKilled;
+
+
 	PlayerModel::PlayerModel()
 	{
 		entityType = Entity::EntityType::PLAYER;
@@ -22,6 +26,9 @@ namespace Player
 		playerState = PlayerState::ALIVE;
 		currentPlayerPosition = initialPlayerPosition;
 		//playerScore = 0;
+
+		playerLives = maxPlayerLives;
+		enemiesKilled = 0;
 
 		bShield = false;
 		bRapidFire = false;

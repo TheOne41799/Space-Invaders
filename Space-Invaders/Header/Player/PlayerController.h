@@ -57,6 +57,9 @@ namespace Player
 
 		void Reset();
 
+		void DecreasePlayerLive();
+		inline void IncreaseEnemiesKilled(int val) { PlayerModel::enemiesKilled += val; }
+
 		void EnableShield();
 		void EnableRapidFire();
 		void EnableTrippleLaser();

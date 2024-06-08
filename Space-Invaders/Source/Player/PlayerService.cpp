@@ -1,5 +1,7 @@
 #include "../../Header/Player/PlayerService.h"
 #include "../../Header/Player/PlayerController.h"  //This led to a small error - chapter - Using Forward Declarations
+#include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Collision/ICollider.h"
 
 
 namespace Player
@@ -47,6 +49,11 @@ namespace Player
 	void PlayerService::Reset()
 	{
 		playerController->Reset();
+	}
+
+	void PlayerService::IncreaseEnemiesKilled(int val)
+	{
+		playerController->IncreaseEnemiesKilled(val);
 	}
 }
 

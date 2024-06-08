@@ -38,6 +38,8 @@ namespace Elements
             void Initialize(BunkerController* controller);
             void Update();
             void Render();
+
+            const sf::Sprite& GetBunkerSprite();
 		};
 	}
 }

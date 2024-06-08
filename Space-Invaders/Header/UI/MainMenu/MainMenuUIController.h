@@ -3,6 +3,7 @@
 #include "../Interface/IUIController.h"
 #include "../UIElement/ImageView.h"
 #include "../UIElement/ButtonView.h"
+#include "../UIElement/TextView.h"
 
 
 namespace UI
@@ -12,6 +13,8 @@ namespace UI
 		class MainMenuUIController : public Interface::IUIController
 		{
 		private:
+			const sf::Color textColor = sf::Color::White;
+
 			const float buttonWidth = 400.0f;
 			const float buttonHeight = 140.0f;
 
@@ -19,7 +22,7 @@ namespace UI
 			const float instructionsButtonYPosition = 500.f;
 			const float quitButtonYPosition = 700.f;
 
-			const float backgroundAlpha = 85.f;
+			const float backgroundAlpha = 100.f;
 
 			UIElement::ImageView* backgroundImage;
 

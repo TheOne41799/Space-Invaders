@@ -39,5 +39,6 @@ namespace Player
 		void Render();
 
 		const sf::Sprite& GetPlayerSprite();
+		void SetPlayerHighlight(bool bHighlight);
 	};
 }

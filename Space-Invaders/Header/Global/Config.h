@@ -31,5 +31,9 @@ namespace Global
 
 		static const sf::String backgroundMusicPath;
 		static const sf::String buttonClickSoundPath;
+
+		static const sf::String bulletFireSoundPath;
+		static const sf::String powerupEnabledSoundPath;
+		static const sf::String powerupDisabledSoundPath;
 	};
 }

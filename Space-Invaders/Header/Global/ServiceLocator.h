@@ -44,9 +44,7 @@ namespace Global
 		static ServiceLocator* GetInstance();
 
 		void Initialize();
-
 		void Update();
-
 		void Render();
 
 		Graphics::GraphicService* GetGraphicService();

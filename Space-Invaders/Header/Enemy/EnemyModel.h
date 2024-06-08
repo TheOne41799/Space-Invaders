@@ -28,8 +28,8 @@ namespace Enemy
 		const sf::Vector2f leftMostPosition = sf::Vector2f(50.f, 50.f);
 		const sf::Vector2f rightMostPosition = sf::Vector2f(1800.f, 50.f);
 
-		const float verticalTravelDistance = 100.f;
-		const float enemyMovementSpeed = 250.0f;
+		//const float verticalTravelDistance = 100.f;
+		//const float enemyMovementSpeed = 250.0f;
 
 		const sf::Vector2f barrelPositionOffset = sf::Vector2f(20.f, 50.f);
 

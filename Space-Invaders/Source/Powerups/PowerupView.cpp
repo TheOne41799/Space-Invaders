@@ -118,6 +118,11 @@ namespace Powerup
 		}
 	}
 
+	const sf::Sprite& PowerupView::GetPowerupSprite()
+	{
+		return powerupImage->GetSprite();
+	}
+
 	void PowerupView::Destroy()
 	{
 		delete(powerupImage);

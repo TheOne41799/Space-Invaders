@@ -9,13 +9,14 @@ namespace Enemy
 		class SubZeroController : public EnemyController
 		{
 		private:
-			float verticalMovementSpeed = 100.f;
+			float subZeroVerticalMovementSpeed = 100.f;
 			const float subZeroRateOfFire = 2.f;
 
 			void Move() override;
 			void MoveDown();
 
 			void FireBullet() override;
+			void Destroy() override;
 
 		public:
 			SubZeroController(EnemyType type);

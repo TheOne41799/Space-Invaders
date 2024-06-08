@@ -1,12 +1,15 @@
 #include "../../../Header/Enemy/Controllers/ZapperController.h"
+#include "../../header/Enemy/EnemyView.h"
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../Header/Enemy/EnemyConfig.h"
+#include "../../Header/Bullet/BulletConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
 
 
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Time;
 	using namespace Bullet;
 
 
@@ -41,7 +44,7 @@ namespace Enemy
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
-			currentPosition.x -= enemyModel->enemyMovementSpeed
+			currentPosition.x -= horizontalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x <= enemyModel->leftMostPosition.x)
@@ -59,7 +62,7 @@ namespace Enemy
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
-			currentPosition.x += enemyModel->enemyMovementSpeed
+			currentPosition.x += horizontalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x >= enemyModel->rightMostPosition.x)
@@ -77,7 +80,7 @@ namespace Enemy
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
-			currentPosition.y += enemyModel->enemyMovementSpeed
+			currentPosition.y += horizontalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.y >= enemyModel->GetReferencePosition().y + verticalTravelDistance)
@@ -104,6 +107,11 @@ namespace Enemy
 											enemyModel->GetEntityType(),
 											enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
 											Bullet::MovementDirection::DOWN);
+		}
+
+		void ZapperController::Destroy()
+		{
+			EnemyController::Destroy();
 		}
 	}
 }

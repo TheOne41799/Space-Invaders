@@ -2,6 +2,7 @@
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Element/Bunker/BunkerController.h"
 #include "../../Header/Global/Config.h"
+#include "../../Header/Graphics/GraphicService.h"
 
 
 namespace Elements
@@ -9,6 +10,7 @@ namespace Elements
 	namespace Bunker
 	{		
 		using namespace Global;
+		using namespace Graphics;
 		using namespace UI::UIElement;
 
 
@@ -72,7 +74,12 @@ namespace Elements
 			//gameWindow->draw(bunkerSprite);
 
 			bunkerImage->Render();
-		}		
+		}	
+
+		const sf::Sprite& BunkerView::GetBunkerSprite()
+		{
+			return bunkerImage->GetSprite();
+		}
 
 		void BunkerView::Destroy()
 		{

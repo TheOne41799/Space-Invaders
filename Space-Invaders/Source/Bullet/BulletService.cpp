@@ -11,8 +11,8 @@
 namespace Bullet
 {
 	using namespace Controller;
-	using namespace Projectile;
-	//using namespace Entity;
+	//using namespace Projectile;
+	using namespace Entity;
 	using namespace Global;
 	using namespace Collision;
 
@@ -144,13 +144,19 @@ namespace Bullet
 
 	void BulletService::DestroyBullet(BulletController* bulletController)
 	{
-		if (std::find(flaggedBulletList.begin(), flaggedBulletList.end(), bulletController)
+		/*if (std::find(flaggedBulletList.begin(), flaggedBulletList.end(), bulletController)
 					  == flaggedBulletList.end())
 		{
 			flaggedBulletList.push_back(bulletController);
 
 			bulletList.erase(std::remove(bulletList.begin(), bulletList.end(), bulletController), bulletList.end());
-		}
+		}*/
+
+		dynamic_cast<ICollider*>(bulletController)->DisableCollision();
+
+		flaggedBulletList.push_back(bulletController);
+
+		bulletList.erase(std::remove(bulletList.begin(), bulletList.end(), bulletController), bulletList.end());
 	}
 
 	void BulletService::Reset()

@@ -27,7 +27,8 @@ namespace Enemy
 
 	public:
 		EnemyService();
-		virtual ~EnemyService();
+		//virtual ~EnemyService();
+		~EnemyService();
 
 		void Initialize();
 		void Update();

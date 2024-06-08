@@ -15,6 +15,9 @@ namespace Enemy
 	class EnemyController : public Collision::ICollider
 	{
 	protected:
+		float verticalMovementSpeed = 30.f;
+		float horizontalMovementSpeed = 200.0f;
+
 		float rateOfFire = 3.f;
 		float elapsedFireDuration = 0.f;
 
