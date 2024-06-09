@@ -23,12 +23,15 @@ namespace Sound
 		sf::Sound soundEffect;
 
 		sf::Sound powerupSoundEffect;
+		sf::Sound explosionSoundEffect;
 
 		sf::SoundBuffer bufferButtonClick;
 		sf::SoundBuffer bufferBulletFire;
 
 		sf::SoundBuffer bufferPowerupEnabled;
 		sf::SoundBuffer bufferPowerupDisabled;
+
+		sf::SoundBuffer bufferExplosionSound;
 
 		void LoadBackgroundMusicFromFile();
 		void LoadSoundFromFile();

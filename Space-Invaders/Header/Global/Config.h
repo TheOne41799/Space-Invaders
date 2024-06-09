@@ -36,5 +36,6 @@ namespace Global
 		static const sf::String bulletFireSoundPath;
 		static const sf::String powerupEnabledSoundPath;
 		static const sf::String powerupDisabledSoundPath;
+		static const sf::String explosionSoundPath;
 	};
 }
