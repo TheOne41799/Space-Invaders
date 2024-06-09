@@ -47,8 +47,6 @@ namespace Powerup
 
 	void PowerupController::UpdatePowerupPosition()
 	{
-		//sf::Vector2f currentPosition = powerupModel->GetPowerupPosition();
-
 		sf::Vector2f currentPosition = GetCollectiblePosition();
 
 		currentPosition.y += powerupModel->GetMovementSpeed()

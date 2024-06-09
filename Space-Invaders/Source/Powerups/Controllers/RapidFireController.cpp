@@ -13,8 +13,6 @@ namespace Powerup
 
         RapidFireController::~RapidFireController() {}
 
-        //void RapidFireController::OnCollected() {};
-
         void RapidFireController::ApplyPowerup()
         {
             ServiceLocator::GetInstance()->GetPlayerService()->EnableRapidFire();

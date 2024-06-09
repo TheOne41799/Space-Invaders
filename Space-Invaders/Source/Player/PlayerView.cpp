@@ -2,6 +2,8 @@
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Player/PlayerController.h"
 #include "../../Header/Global/Config.h"
+#include "../../Header/Graphics/GraphicService.h"
+#include "../../Header/Player/PlayerModel.h"
 
 
 namespace Player
@@ -23,9 +25,6 @@ namespace Player
 	void PlayerView::Initialize(PlayerController* controller)
 	{
 		playerController = controller;
-		//gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
-		//InitializePlayerSprite();
-
 		InitializeImage();
 	}
 
@@ -39,23 +38,6 @@ namespace Player
 		playerImage->Initialize(Config::playerTexturePath,
 								playerSpriteWidth, playerSpriteHeight, playerController->GetPlayerPosition());
 	}
-
-	/*void PlayerView::InitializePlayerSprite()
-	{
-		if (playerTexture.loadFromFile(Config::playerTexturePath))
-		{
-			playerSprite.setTexture(playerTexture);
-			ScalePlayerSprite();
-		}
-	}
-
-	void PlayerView::ScalePlayerSprite()
-	{
-		playerSprite.setScale(
-			static_cast<float>(playerSpriteWidth) / playerSprite.getTexture()->getSize().x,
-			static_cast<float>(playerSpriteHeight) / playerSprite.getTexture()->getSize().y
-		);
-	}*/
 
 	void PlayerView::Update()
 	{
