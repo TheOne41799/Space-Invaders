@@ -1,9 +1,17 @@
-#include "../../header/Gameplay/GameplayService.h"
-#include "../../header/Gameplay/GameplayController.h"
+#include "../../Header/Gameplay/GameplayService.h"
+#include "../../Header/Gameplay/GameplayController.h"
+#include "../../Header/Global/ServiceLocator.h"
 
 
 namespace Gameplay
 {
+	using namespace Global;
+	using namespace Player;
+	using namespace Enemy;
+	using namespace Elements;
+	using namespace Bullet;
+
+
 	GameplayService::GameplayService()
 	{ 
 		gameplayController = new GameplayController();
@@ -27,5 +35,13 @@ namespace Gameplay
 	void GameplayService::Render() 
 	{
 		gameplayController->Render(); 
+	}
+
+	void GameplayService::Restart()
+	{
+		ServiceLocator::GetInstance()->GetPlayerService()->Reset();
+		ServiceLocator::GetInstance()->GetEnemyService()->Reset();
+		ServiceLocator::GetInstance()->GetBulletService()->Reset();
+		ServiceLocator::GetInstance()->GetElementService()->Reset();
 	}
 }

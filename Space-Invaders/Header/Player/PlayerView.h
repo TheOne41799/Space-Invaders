@@ -13,14 +13,6 @@ namespace Player
 		const float playerSpriteWidth = 60.0f;
 		const float playerSpriteHeight = 60.0f;
 
-		//sf::RenderWindow* gameWindow;
-
-		//sf::Texture playerTexture;
-		//sf::Sprite playerSprite;
-
-		//void InitializePlayerSprite();
-		//void ScalePlayerSprite();
-
 		PlayerController* playerController;
 		UI::UIElement::ImageView* playerImage;
 
@@ -29,7 +21,6 @@ namespace Player
 
 		void Destroy();
 
-
 	public:
 		PlayerView();
 		~PlayerView();
@@ -37,5 +28,8 @@ namespace Player
 		void Initialize(PlayerController* controller);
 		void Update();
 		void Render();
+
+		void SetPlayerHighlight(bool bHighlight);
+		const sf::Sprite& GetPlayerSprite();		
 	};
 }

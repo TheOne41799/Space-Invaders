@@ -3,17 +3,24 @@
 #include "../../Header/Bullet/BulletModel.h"
 #include "../../Header/Bullet/BulletConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Player/PlayerController.h"
+#include "../../Header/Enemy/EnemyController.h"
+#include "../../Header/Element/Bunker/BunkerController.h"
 
 
 namespace Bullet
 {
 	using namespace Global;
+	using namespace Entity;
+	using namespace Player;
+	using namespace Enemy;
+	using namespace Elements::Bunker;
 
 
-	BulletController::BulletController(BulletType type)
+	BulletController::BulletController(BulletType bulletType, EntityType ownerType)
 	{
 		bulletView = new BulletView();
-		bulletModel = new BulletModel(type);
+		bulletModel = new BulletModel(bulletType, ownerType);
 	}
 
 	BulletController::~BulletController()
@@ -38,20 +45,7 @@ namespace Bullet
 	void BulletController::Render()
 	{
 		bulletView->Render();
-	}
-
-	void BulletController::UpdateProjectilePosition()
-	{
-		switch (bulletModel->GetMovementDirection())
-		{
-		case::Bullet::MovementDirection::UP:
-			MoveUp();
-			break;
-		case::Bullet::MovementDirection::DOWN:
-			MoveDown();
-			break;
-		}
-	}
+	}	
 
 	void BulletController::MoveUp()
 	{
@@ -88,11 +82,82 @@ namespace Bullet
 	sf::Vector2f BulletController::GetProjectilePosition()
 	{
 		return bulletModel->GetBulletPosition();
-	}
+	}	
 
 	BulletType BulletController::GetBulletType()
 	{
 		return bulletModel->GetBulletType();
+	}
+
+	Entity::EntityType BulletController::GetOwnerEntityType()
+	{
+		return bulletModel->GetOwnerEntityType();
+	}
+
+	const sf::Sprite& BulletController::GetColliderSprite()
+	{
+		return bulletView->GetBulletSprite();
+	}
+
+	void BulletController::OnCollision(ICollider* otherCollider)
+	{
+		ProcessPlayerCollision(otherCollider);
+		ProcessEnemyCollision(otherCollider);
+		ProcessBunkerCollision(otherCollider);
+		ProcessBulletCollision(otherCollider);
+	}
+
+	void BulletController::UpdateProjectilePosition()
+	{
+		switch (bulletModel->GetMovementDirection())
+		{
+		case::Bullet::MovementDirection::UP:
+			MoveUp();
+			break;
+		case::Bullet::MovementDirection::DOWN:
+			MoveDown();
+			break;
+		}
+	}	
+
+	void BulletController::ProcessBulletCollision(ICollider* otherCollider)
+	{
+		BulletController* bulletController = dynamic_cast<BulletController*>(otherCollider);
+
+		if (bulletController)
+		{
+			ServiceLocator::GetInstance()->GetBulletService()->DestroyBullet(this);
+		}
+	}
+
+	void BulletController::ProcessEnemyCollision(ICollider* otherCollider)
+	{
+		EnemyController* enemyController = dynamic_cast<EnemyController*>(otherCollider);
+
+		if (enemyController && GetOwnerEntityType() != EntityType::ENEMY)
+		{
+			ServiceLocator::GetInstance()->GetBulletService()->DestroyBullet(this);
+		}
+	}
+
+	void BulletController::ProcessPlayerCollision(ICollider* otherCollider)
+	{
+		PlayerController* playerController = dynamic_cast<PlayerController*>(otherCollider);
+
+		if (playerController && GetOwnerEntityType() != EntityType::PLAYER)
+		{
+			ServiceLocator::GetInstance()->GetBulletService()->DestroyBullet(this);
+		}
+	}
+
+	void BulletController::ProcessBunkerCollision(ICollider* otherCollider)
+	{
+		BunkerController* bunkerController = dynamic_cast<BunkerController*>(otherCollider);
+
+		if (bunkerController)
+		{
+			ServiceLocator::GetInstance()->GetBulletService()->DestroyBullet(this);
+		}
 	}
 }
 

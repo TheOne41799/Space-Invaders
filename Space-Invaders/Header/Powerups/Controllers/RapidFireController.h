@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Header/Powerups/PowerupController.h"
+#include "../../Powerups/PowerupController.h"
 
 
 namespace Powerup
@@ -8,11 +8,12 @@ namespace Powerup
     {
         class RapidFireController : public PowerupController
         {
+        protected:
+            void ApplyPowerup() override;
+
         public:
             RapidFireController(PowerupType type);
             virtual ~RapidFireController();
-
-            void OnCollected() override;
         };
     }
 }

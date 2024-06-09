@@ -7,6 +7,7 @@
 #include "../../Header/Enemy/Controllers/ZapperController.h"
 #include "../../Header/Enemy/Controllers/ThunderSnakeController.h"
 #include "../../Header/Enemy/Controllers/UFOController.h"
+#include "../../Header/Collision/ICollider.h"
 
 
 namespace Enemy
@@ -14,6 +15,7 @@ namespace Enemy
 	using namespace Global;
 	using namespace Time;
 	using namespace Controller;
+	using namespace Collision;
 
 
 	EnemyService::EnemyService()
@@ -36,17 +38,19 @@ namespace Enemy
 		UpdateSpawnTimer();
 		ProcessEnemySpawn();
 
-		for (int i = 0; i < enemyList.size(); i++)
+		for (EnemyController* enemy : enemyList)
 		{
-			enemyList[i]->Update();
+			enemy->Update();
 		}
+
+		DestroyFlaggedEnemies();
 	}
 
 	void EnemyService::Render()
 	{
-		for (int i = 0; i < enemyList.size(); i++)
+		for (EnemyController* enemy : enemyList)
 		{
-			enemyList[i]->Render();
+			enemy->Render();
 		}
 	}
 
@@ -63,6 +67,26 @@ namespace Enemy
 			spawnTimer = 0.0f;
 		}
 	}
+
+	EnemyType EnemyService::GetRandomEnemyType()
+	{
+		int randomType = std::rand() % 4;
+
+		return static_cast<Enemy::EnemyType>(randomType);
+	}
+
+	EnemyController* EnemyService::SpawnEnemy()
+	{
+		EnemyController* enemyController = CreateEnemy(GetRandomEnemyType());
+
+		enemyController->Initialize();
+
+		ServiceLocator::GetInstance()->GetCollisionService()->AddCollider(dynamic_cast<ICollider*>(enemyController));
+
+		enemyList.push_back(enemyController);
+
+		return enemyController;
+	}	
 
 	EnemyController* EnemyService::CreateEnemy(EnemyType enemyType)
 	{
@@ -82,37 +106,41 @@ namespace Enemy
 		}
 	}
 
-	EnemyType EnemyService::GetRandomEnemyType()
+	void EnemyService::DestroyFlaggedEnemies()
 	{
-		int randomType = std::rand() % 4;
-		return static_cast<Enemy::EnemyType>(randomType);
-	}
+		for (int i = 0; i < flaggedEnemyList.size(); i++)
+		{
+			ServiceLocator::GetInstance()->GetCollisionService()
+										 ->RemoveCollider(dynamic_cast<ICollider*>(flaggedEnemyList[i]));
 
-	EnemyController* EnemyService::SpawnEnemy()
-	{
-		EnemyController* enemyController = CreateEnemy(GetRandomEnemyType());
-
-		enemyController->Initialize();
-
-		enemyList.push_back(enemyController);
-
-		return enemyController;
+			delete (flaggedEnemyList[i]);
+		}
+		flaggedEnemyList.clear();
 	}
 
 	void EnemyService::DestroyEnemy(EnemyController* enemyController)
 	{
+		dynamic_cast<ICollider*>(enemyController)->DisableCollision();
+		flaggedEnemyList.push_back(enemyController);
 		enemyList.erase(std::remove(enemyList.begin(), enemyList.end(), enemyController), enemyList.end());
-
-		//printf("Enemy Killed");
-
-		delete(enemyController);
-	}
+	}	
 
 	void EnemyService::Destroy()
 	{
 		for (int i = 0; i < enemyList.size(); i++)
 		{
+			ServiceLocator::GetInstance()->GetCollisionService()
+										 ->RemoveCollider(dynamic_cast<ICollider*>(enemyList[i]));
+
 			delete(enemyList[i]);
 		}
+
+		enemyList.clear();
+	}
+
+	void EnemyService::Reset()
+	{
+		Destroy();
+		spawnTimer = 0.0f;
 	}
 }

@@ -30,13 +30,6 @@ namespace Global
 	const sf::String Config::outscalBombTexturePath = "assets/textures/outscal_bomb.png";
 
 
-	const sf::String Config::laserBulletTexturePath = "assets/textures/laser_bullet.png";
-
-	const sf::String Config::torpedoeTexturePath = "assets/textures/torpedoe.png";
-
-	const sf::String Config::frostBeamTexturePath = "assets/textures/frost_beam.png";
-
-
 	const sf::String Config::playButtonTexturePath = "assets/textures/play_button.png";
 
 	const sf::String Config::instructionsButtonTexturePath = "assets/textures/instructions_button.png";
@@ -54,4 +47,10 @@ namespace Global
 	const sf::String Config::backgroundMusicPath = "assets/sounds/background_music.mp3";
 
 	const sf::String Config::buttonClickSoundPath = "assets/sounds/button_click_sound.wav";
+
+	const sf::String Config::bulletFireSoundPath = "assets/sounds/bullet_fire.ogg";
+
+	const sf::String Config::powerupEnabledSoundPath = "assets/sounds/powerup_enabled.ogg";
+
+	const sf::String Config::powerupDisabledSoundPath = "assets/sounds/powerup_disabled.ogg";
 }

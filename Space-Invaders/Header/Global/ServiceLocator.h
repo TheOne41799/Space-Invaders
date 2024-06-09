@@ -1,15 +1,16 @@
 #pragma once
 #include "../Graphics/GraphicService.h"
 #include "../Event/EventService.h"
+#include "../UI/UIService.h"
 #include "../Player/PlayerService.h"
 #include "../Time/TimeService.h"
-#include "../UI/UIService.h"
 #include "../Enemy/EnemyService.h"
 #include "../Gameplay/GameplayService.h"
 #include "../Element/ElementService.h"
-#include "../Sound/SoundService.h"
 #include "../Bullet/BulletService.h"
 #include "../Powerups/PowerupService.h"
+#include "../Sound/SoundService.h"
+#include "../Collision/CollisionService.h"
 
 
 namespace Global
@@ -18,47 +19,43 @@ namespace Global
 	{
 	private:
 
-		Graphics::GraphicService* graphicService;
 		Event::EventService* eventService;
-		Player::PlayerService* playerService;
-		Time::TimeService* timeService;
+		Graphics::GraphicService* graphicService;
 		UI::UIService* uiService;
-		Enemy::EnemyService* enemyService;
+		Time::TimeService* timeService;
 		Gameplay::GameplayService* gameplayService;
+		Player::PlayerService* playerService;
+		Enemy::EnemyService* enemyService;
 		Elements::ElementService* elementService;
-		Sound::SoundService* soundService;
 		Bullet::BulletService* bulletService;
 		Powerup::PowerupService* powerupService;
+		Sound::SoundService* soundService;
+		Collision::CollisionService* collisionService;
 
 		ServiceLocator();
-
 		~ServiceLocator();
 
 		void CreateServices();
-
 		void ClearAllServices();
 
 	public:
 		static ServiceLocator* GetInstance();
 
 		void Initialize();
-
 		void Update();
-
 		void Render();
 
-		Graphics::GraphicService* GetGraphicService();
 		Event::EventService* GetEventService();
-		Player::PlayerService* GetPlayerService();
-		Time::TimeService* GetTimeService();
+		Graphics::GraphicService* GetGraphicService();
 		UI::UIService* GetUIService();
-		Enemy::EnemyService* GetEnemyService();
+		Time::TimeService* GetTimeService();
 		Gameplay::GameplayService* GetGameplayService();
+		Player::PlayerService* GetPlayerService();
+		Enemy::EnemyService* GetEnemyService();
 		Elements::ElementService* GetElementService();
-		Sound::SoundService* GetSoundService();
 		Bullet::BulletService* GetBulletService();
 		Powerup::PowerupService* GetPowerupService();
-
-		void DeleteServiceLocator();
+		Sound::SoundService* GetSoundService();
+		Collision::CollisionService* GetCollisionService();
 	};
 }

@@ -1,6 +1,6 @@
 #include "../../Header/Main/GameService.h"
-//#include "../../Header/Graphics/GraphicService.h" //Should this be included?
-//#include "../../Header/Event/EventService.h" //Should this be included?
+#include "../../Header/Graphics/GraphicService.h"
+#include "../../Header/Event/EventService.h"
 
 
 namespace Main
@@ -18,7 +18,7 @@ namespace Main
 
 	GameService::~GameService()
 	{
-		Destroy();
+		//Destroy();
 	}
 
 	void GameService::Initialize()
@@ -31,12 +31,6 @@ namespace Main
 	void GameService::InitializeVariables()
 	{
 		gameWindow = serviceLocator->GetGraphicService()->GetGameWindow();
-	}
-
-	void GameService::Destroy()
-	{
-		//delete serviceLocator;
-		delete gameWindow;
 	}
 
 	void GameService::Ignite()
@@ -53,7 +47,7 @@ namespace Main
 
 	void GameService::Render()
 	{
-		gameWindow->clear(serviceLocator->GetGraphicService()->GetGameWindowColor());
+		gameWindow->clear();
 		serviceLocator->Render();
 		gameWindow->display();
 	}

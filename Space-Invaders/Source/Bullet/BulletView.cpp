@@ -24,9 +24,6 @@ namespace Bullet
 	void BulletView::Initialize(BulletController* controller)
 	{
 		bulletController = controller;
-		//gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
-		//InitializeImage(bulletController->GetBulletType());
-
 		InitializeImage();
 	}
 
@@ -40,56 +37,16 @@ namespace Bullet
 		bulletImage->Initialize(GetBulletTexturePath(),
 								bulletSpriteWidth, bulletSpriteHeight, 
 								bulletController->GetProjectilePosition());
-	}
-
-	/*void BulletView::InitializeImage(BulletType type)
-	{
-		switch (type)
-		{
-		case::Bullet::BulletType::LASER_BULLET:
-			if (bulletTexture.loadFromFile(Config::laserBulletTexturePath))
-			{
-				bulletSprite.setTexture(bulletTexture);
-				ScaleImage();
-			}
-			break;
-		case::Bullet::BulletType::FROST_BULLET:
-			if (bulletTexture.loadFromFile(Config::frostBeamTexturePath))
-			{
-				bulletSprite.setTexture(bulletTexture);
-				ScaleImage();
-			}
-			break;
-		case::Bullet::BulletType::TORPEDOE:
-			if (bulletTexture.loadFromFile(Config::torpedoeTexturePath))
-			{
-				bulletSprite.setTexture(bulletTexture);
-				ScaleImage();
-			}
-			break;
-		}
-	}
-
-	void BulletView::ScaleImage()
-	{
-		bulletSprite.setScale(
-			static_cast<float>(bulletSpriteWidth) / bulletSprite.getTexture()->getSize().x,
-			static_cast<float>(bulletSpriteHeight) / bulletSprite.getTexture()->getSize().y
-		);
-	}*/
+	}	
 
 	void BulletView::Update()
 	{
-		//bulletSprite.setPosition(bulletController->GetProjectilePosition());
-
 		bulletImage->SetPosition(bulletController->GetProjectilePosition());
 		bulletImage->Update();
 	}
 
 	void BulletView::Render()
 	{
-		//gameWindow->draw(bulletSprite);
-
 		bulletImage->Render();
 	}
 
@@ -98,15 +55,20 @@ namespace Bullet
 		switch (bulletController->GetBulletType())
 		{
 		case::Bullet::BulletType::LASER_BULLET:
-			return Config::laserBulletTexturePath;
+			return BulletConfig::laserBulletTexturePath;
 
 		case::Bullet::BulletType::FROST_BULLET:
-			return Config::frostBeamTexturePath;
+			return BulletConfig::frostBeamTexturePath;
 
 		case::Bullet::BulletType::TORPEDOE:
-			return Config::torpedoeTexturePath;
+			return BulletConfig::torpedoeTexturePath;
 		}
 	}
+
+	const sf::Sprite& BulletView::GetBulletSprite()
+	{
+		return bulletImage->GetSprite();
+	}	
 
 	void BulletView::Destroy()
 	{

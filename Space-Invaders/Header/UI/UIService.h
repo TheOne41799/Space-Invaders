@@ -1,5 +1,6 @@
 #pragma once
 #include "MainMenu/MainMenuUIController.h"
+#include "GameplayUI/GameplayUIController.h"
 #include "Interface/IUIController.h"
 
 
@@ -9,12 +10,14 @@ namespace UI
 	{
 	private:
 		MainMenu::MainMenuUIController* mainMenuUIController;
+		GameplayUI::GameplayUIController* gameplayUIController;
 
 		void CreateControllers();
 		void InitializeControllers();
-		void Destroy();
 
 		Interface::IUIController* GetCurrentUIController();
+
+		void Destroy();		
 
 	public:
 		UIService();

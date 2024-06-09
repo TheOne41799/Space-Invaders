@@ -1,7 +1,8 @@
 #include "../../Header/Element/Bunker/BunkerView.h"
 #include "../../Header/Global/ServiceLocator.h"
-#include "../../Header/Element/Bunker/BunkerController.h"
+#include "../../Header/Graphics/GraphicService.h"
 #include "../../Header/Global/Config.h"
+#include "../../Header/Element/Bunker/BunkerController.h"
 
 
 namespace Elements
@@ -9,6 +10,7 @@ namespace Elements
 	namespace Bunker
 	{		
 		using namespace Global;
+		using namespace Graphics;
 		using namespace UI::UIElement;
 
 
@@ -25,28 +27,8 @@ namespace Elements
 		void BunkerView::Initialize(BunkerController* controller)
 		{
 			bunkerController = controller;
-			//gameWindow = ServiceLocator::GetInstance()->GetGraphicService()->GetGameWindow();
-			//InitializeImage();
-
 			InitializeImage();
-		}
-
-		/*void BunkerView::InitializeImage()
-		{
-			if (bunkerTexture.loadFromFile(Config::bunkerTexturePath))
-			{
-				bunkerSprite.setTexture(bunkerTexture);
-				ScaleSprite();
-			}
-		}
-
-		void BunkerView::ScaleSprite()
-		{
-			bunkerSprite.setScale(
-				static_cast<float>(bunkerSpriteWidth) / bunkerSprite.getTexture()->getSize().x,
-				static_cast<float>(bunkerSpriteHeight) / bunkerSprite.getTexture()->getSize().y
-			);
-		}*/
+		}		
 
 		void BunkerView::CreateUIElements()
 		{
@@ -62,17 +44,18 @@ namespace Elements
 
 		void BunkerView::Update()
 		{
-			//bunkerSprite.setPosition(bunkerController->GetBunkerPosition());
-
 			bunkerImage->Update();
 		}
 
 		void BunkerView::Render()
 		{
-			//gameWindow->draw(bunkerSprite);
-
 			bunkerImage->Render();
-		}		
+		}	
+
+		const sf::Sprite& BunkerView::GetBunkerSprite()
+		{
+			return bunkerImage->GetSprite();
+		}
 
 		void BunkerView::Destroy()
 		{

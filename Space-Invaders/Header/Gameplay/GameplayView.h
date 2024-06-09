@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../../header/UI/UIElement/ImageView.h"
+#include "../UI/UIElement/ImageView.h"
+
 
 namespace Gameplay
 {
@@ -15,9 +16,6 @@ namespace Gameplay
         sf::Texture backgroundTexture;
         sf::Sprite backgroundSprite;
         const float background_alpha = 150.f;
-
-        /*void InitializeBackgroundSprite();
-        void ScaleBackgroundSprite();*/
 
         GameplayController* gameplayController;
         UI::UIElement::ImageView* backgroundImage;

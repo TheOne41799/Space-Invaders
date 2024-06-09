@@ -1,14 +1,20 @@
 #include "../../Header/Enemy/Controllers/UFOController.h"
+#include "../../Header/Enemy/EnemyView.h"
 #include "../../Header/Enemy/EnemyModel.h"
 #include "../../Header/Enemy/EnemyConfig.h"
-#include "../../Header/Bullet/BulletConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
+#include "../../Header/Bullet/BulletConfig.h"
+#include "../../Header/Powerups/PowerupService.h"
+#include "../../Header/Bullet/BulletController.h"
+#include "../../Header/Entity/Entity.h"
 
 
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Time;
 	using namespace Bullet;
+	using namespace Entity;
 
 
 	namespace Controller
@@ -20,6 +26,54 @@ namespace Enemy
 		void UFOController::Initialize()
 		{
 			EnemyController::Initialize();
+		}		
+
+		void UFOController::Move()
+		{
+			switch (enemyModel->GetMovementDirection())
+			{
+			case::Enemy::MovementDirection::LEFT:
+				MoveLeft();
+				break;
+
+			case::Enemy::MovementDirection::RIGHT:
+				MoveRight();
+				break;
+			}
+		}
+
+		void UFOController::MoveLeft()
+		{
+			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
+
+			currentPosition.x -= horizontalMovementSpeed
+								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+
+			if (currentPosition.x <= enemyModel->leftMostPosition.x)
+			{
+				enemyModel->SetMovementDirection(MovementDirection::RIGHT);
+			}
+			else
+			{
+				enemyModel->SetEnemyPosition(currentPosition);
+			}
+		}
+
+		void UFOController::MoveRight()
+		{
+			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
+
+			currentPosition.x += horizontalMovementSpeed
+								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+
+			if (currentPosition.x >= enemyModel->rightMostPosition.x)
+			{
+				enemyModel->SetMovementDirection(MovementDirection::LEFT);
+			}
+			else
+			{
+				enemyModel->SetEnemyPosition(currentPosition);
+			}
 		}
 
 		void UFOController::FireBullet()
@@ -34,55 +88,23 @@ namespace Enemy
 			return static_cast<Powerup::PowerupType>(random_value);
 		}
 
-		void UFOController::Move()
+		void UFOController::OnCollision(ICollider* otherCollider)
 		{
-			switch (enemyModel->GetMovementDirection())
+			EnemyController::OnCollision(otherCollider);
+
+			BulletController* bulletController = dynamic_cast<BulletController*>(otherCollider);
+
+			if (bulletController && bulletController->GetOwnerEntityType() != EntityType::ENEMY)
 			{
-			case::Enemy::MovementDirection::LEFT:
-				MoveLeft();
-				break;
-
-			case::Enemy::MovementDirection::RIGHT:
-				MoveRight();
-				break;
-			}
-
-		}
-
-		void UFOController::MoveLeft()
-		{
-			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
-
-			currentPosition.x -= enemyModel->horizontalMovementSpeed
-											 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
-
-			if (currentPosition.x <= enemyModel->leftMostPosition.x)
-			{
-				enemyModel->SetMovementDirection(MovementDirection::RIGHT);
-				enemyModel->SetReferencePosition(currentPosition);
-			}
-			else
-			{
-				enemyModel->SetEnemyPosition(currentPosition);
+				ServiceLocator::GetInstance()->GetPowerupService()
+								->SpawnPowerup(GetRandomPowerupType(), enemyModel->GetEnemyPosition());
+				return;
 			}
 		}
 
-		void UFOController::MoveRight()
+		void UFOController::Destroy()
 		{
-			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
-
-			currentPosition.x += enemyModel->horizontalMovementSpeed
-											 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
-
-			if (currentPosition.x >= enemyModel->rightMostPosition.x)
-			{
-				enemyModel->SetMovementDirection(MovementDirection::LEFT);
-				enemyModel->SetReferencePosition(currentPosition);
-			}
-			else
-			{
-				enemyModel->SetEnemyPosition(currentPosition);
-			}
+			EnemyController::Destroy();
 		}
 	}
 }

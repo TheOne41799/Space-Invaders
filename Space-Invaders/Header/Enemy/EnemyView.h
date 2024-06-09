@@ -7,10 +7,6 @@ namespace Enemy
 {
 	class EnemyController;
 
-    enum class EnemyType;
-    enum class MovementDirection;
-    enum class EnemyState;
-
 
 	class EnemyView
 	{
@@ -20,13 +16,6 @@ namespace Enemy
 
         EnemyController* enemyController;
         UI::UIElement::ImageView* enemyImage;
-
-        /*sf::RenderWindow* gameWindow;
-        sf::Texture enemyTexture;
-        sf::Sprite enemySprite;
-
-        void InitializeEnemySprite(EnemyType type);
-        void ScaleEnemySprite();*/
 
         void CreateUIElements();
         void InitializeImage();
@@ -41,5 +30,7 @@ namespace Enemy
         void Initialize(EnemyController* controller);
         void Update();
         void Render();
+
+        const sf::Sprite& GetEnemySprite();
 	};
 }

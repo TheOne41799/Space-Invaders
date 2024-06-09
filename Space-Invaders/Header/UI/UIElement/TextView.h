@@ -11,6 +11,7 @@ namespace UI
 			DS_DIGIB,
 		};
 
+
 		class TextView : public UIView
 		{
 		private:

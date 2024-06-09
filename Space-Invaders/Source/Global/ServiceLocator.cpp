@@ -5,9 +5,9 @@
 namespace Global
 {
 	using namespace Graphics;
+	using namespace Time;
 	using namespace Event;
 	using namespace Player;
-	using namespace Time;
 	using namespace UI;
 	using namespace Enemy;
 	using namespace Main;
@@ -16,6 +16,7 @@ namespace Global
 	using namespace Sound;
 	using namespace Bullet;
 	using namespace Powerup;
+	using namespace Collision;
 
 
 	ServiceLocator::ServiceLocator()
@@ -31,6 +32,7 @@ namespace Global
 		soundService = nullptr;
 		bulletService = nullptr;
 		powerupService = nullptr;
+		collisionService = nullptr;
 
 		CreateServices();
 	}
@@ -49,10 +51,11 @@ namespace Global
 		uiService = new UIService();
 		enemyService = new EnemyService();
 		gameplayService = new GameplayService();
-		elementService = new ElementService();
-		soundService = new SoundService();
+		elementService = new ElementService();		
 		bulletService = new BulletService();
 		powerupService = new PowerupService();
+		collisionService = new CollisionService();
+		soundService = new SoundService();
 	}
 
 	void ServiceLocator::ClearAllServices()
@@ -68,6 +71,7 @@ namespace Global
 		delete(soundService);
 		delete(bulletService);
 		delete(powerupService);
+		delete(collisionService);
 	}
 
 	ServiceLocator* ServiceLocator::GetInstance()
@@ -89,6 +93,7 @@ namespace Global
 		soundService->Initialize();
 		bulletService->Initialize();
 		powerupService->Initialize();
+		collisionService->Initialize();
 	}
 
 	void ServiceLocator::Update()
@@ -102,9 +107,10 @@ namespace Global
 			gameplayService->Update();
 			playerService->Update();
 			enemyService->Update();
-			bulletService->Update();
 			elementService->Update();
+			bulletService->Update();			
 			powerupService->Update();
+			collisionService->Update();
 		}
 
 		uiService->Update();
@@ -119,8 +125,8 @@ namespace Global
 			gameplayService->Render();
 			playerService->Render();
 			enemyService->Render();
-			bulletService->Render();
 			elementService->Render();
+			bulletService->Render();
 			powerupService->Render();
 		}
 
@@ -182,9 +188,9 @@ namespace Global
 		return powerupService;
 	}
 
-	void ServiceLocator::DeleteServiceLocator()
+	Collision::CollisionService* ServiceLocator::GetCollisionService()
 	{
-		delete(this);
+		return collisionService;
 	}
 }
 

@@ -2,11 +2,13 @@
 #include "../../header/Enemy/EnemyView.h"
 #include "../../header/Enemy/EnemyModel.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Bullet/BulletConfig.h"
 
 
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Time;
 	using namespace Bullet;
 
 
@@ -20,6 +22,8 @@ namespace Enemy
 		{
 			EnemyController::Initialize();
 			enemyModel->SetMovementDirection(GetInitialMovementDirection());
+
+			horizontalMovementSpeed = thunderSnakeHorizontalMovementSpeed;
 		}
 
 		MovementDirection ThunderSnakeController::GetInitialMovementDirection()
@@ -64,7 +68,7 @@ namespace Enemy
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
-			currentPosition.x -= thunderSnakeHorizontalMovementSpeed
+			currentPosition.x -= horizontalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x <= enemyModel->leftMostPosition.x)
@@ -80,7 +84,7 @@ namespace Enemy
 		void ThunderSnakeController::MoveRight()
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
-			currentPosition.x += thunderSnakeHorizontalMovementSpeed
+			currentPosition.x += horizontalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x >= enemyModel->rightMostPosition.x)
@@ -97,10 +101,10 @@ namespace Enemy
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
-			currentPosition.y += thunderSnakeVerticalMovementSpeed
+			currentPosition.y += verticalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
-			currentPosition.x -= thunderSnakeHorizontalMovementSpeed
+			currentPosition.x -= horizontalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x <= enemyModel->leftMostPosition.x)
@@ -117,10 +121,10 @@ namespace Enemy
 		{
 			sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
 
-			currentPosition.y += thunderSnakeVerticalMovementSpeed
+			currentPosition.y += verticalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
-			currentPosition.x += thunderSnakeHorizontalMovementSpeed
+			currentPosition.x += horizontalMovementSpeed
 								 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (currentPosition.x >= enemyModel->rightMostPosition.x)
@@ -135,10 +139,16 @@ namespace Enemy
 
 		void ThunderSnakeController::FireBullet()
 		{
-			ServiceLocator::GetInstance()->GetBulletService()
-							->SpawnBullet(BulletType::TORPEDOE,
-										  enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
-										  Bullet::MovementDirection::DOWN);
+			ServiceLocator::GetInstance()->GetBulletService()->SpawnBullet(
+											BulletType::TORPEDOE,
+											enemyModel->GetEntityType(),
+											enemyModel->GetEnemyPosition() + enemyModel->barrelPositionOffset,
+											Bullet::MovementDirection::DOWN);
+		}
+
+		void ThunderSnakeController::Destroy()
+		{
+			EnemyController::Destroy();
 		}
 	}
 }

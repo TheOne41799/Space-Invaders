@@ -27,6 +27,18 @@ namespace Sound
 		{
 			printf("Error loading background music file");
 		}
+		if (!bufferBulletFire.loadFromFile(Config::bulletFireSoundPath))
+		{
+			printf("Error loading background music file");
+		}
+		if (!bufferPowerupEnabled.loadFromFile(Config::powerupEnabledSoundPath))
+		{
+			printf("Error loading background music file");
+		}
+		if (!bufferPowerupDisabled.loadFromFile(Config::powerupDisabledSoundPath))
+		{
+			printf("Error loading background music file");
+		}
 	}
 
 	void SoundService::PlaySound(SoundType soundType)
@@ -35,6 +47,18 @@ namespace Sound
 		{
 		case SoundType::BUTTON_CLICK:
 			soundEffect.setBuffer(bufferButtonClick);
+			break;
+		case SoundType::BULLET_FIRE:
+			soundEffect.setBuffer(bufferBulletFire);
+			soundEffect.play();
+			break;
+		case SoundType::POWERUP_ENABLED:
+			powerupSoundEffect.setBuffer(bufferPowerupEnabled);
+			powerupSoundEffect.play();
+			break;
+		case SoundType::POWERUP_DISABLED:
+			powerupSoundEffect.setBuffer(bufferPowerupDisabled);
+			powerupSoundEffect.play();
 			break;
 		default:
 			printf("Invalid sound type");

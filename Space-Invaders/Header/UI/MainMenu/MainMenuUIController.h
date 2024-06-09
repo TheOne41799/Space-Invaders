@@ -3,6 +3,7 @@
 #include "../Interface/IUIController.h"
 #include "../UIElement/ImageView.h"
 #include "../UIElement/ButtonView.h"
+#include "../UIElement/TextView.h"
 
 
 namespace UI
@@ -12,53 +13,29 @@ namespace UI
 		class MainMenuUIController : public Interface::IUIController
 		{
 		private:
-			const float buttonWidth = 400.0f;
-			const float buttonHeight = 140.0f;
+			const sf::Color textColor = sf::Color::White;
+			const float backgroundAlpha = 100.f;
 
 			const float playButtonYPosition = 300.f;
 			const float instructionsButtonYPosition = 500.f;
 			const float quitButtonYPosition = 700.f;
 
-			const float backgroundAlpha = 85.f;
+			const float buttonWidth = 400.0f;
+			const float buttonHeight = 140.0f;
 
 			UIElement::ImageView* backgroundImage;
 
 			UIElement::ButtonView* playButton;
 			UIElement::ButtonView* instructionsButton;
-			UIElement::ButtonView* quitButton;
-
-			//sf::RenderWindow* gameWindow;
-
-			/*sf::Texture backgroundTexture;
-			sf::Sprite backgroundSprite;
-
-			sf::Texture playButtonTexture;
-			sf::Sprite playButtonSprite;
-
-			sf::Texture instructionsButtonTexture;
-			sf::Sprite instructionsButtonSprite;
-
-			sf::Texture quitButtonTexture;
-			sf::Sprite quitButtonSprite;*/
-
-			/*void InitializeBackgroundImage();
-			void ScaleBackgroundImage();
-
-			void InitializeButtons();
-			bool LoadButtonTexturesFromFile();
-			void SetButtonSprites();
-
-			void ScaleAllButtons();
-			void ScaleButton(sf::Sprite* buttonToScale);
-			void PositionButtons();
-
-			void ProcessButtonInteractions();
-			bool ClickedButton(sf::Sprite* buttonSprite, sf::Vector2f mousePosition);*/
+			UIElement::ButtonView* quitButton;			
 
 			void CreateImage();
+
 			void CreateButtons();
+
 			void InitializeBackgroundImage();
 			void InitializeButtons();
+
 			void RegisterButtonCallback();
 
 			void PlayButtonCallback();

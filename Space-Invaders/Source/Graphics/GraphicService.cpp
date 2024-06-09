@@ -17,7 +17,7 @@ namespace Graphics
 	void GraphicService::Initialize()
 	{
 		gameWindow = CreateGameWindow();
-		gameWindow->setFramerateLimit(frameRate);
+		SetFrameRate(frameRate);
 	}
 
 	sf::RenderWindow* GraphicService::CreateGameWindow()
@@ -33,8 +33,13 @@ namespace Graphics
 
 	void GraphicService::OnDestroy()
 	{
-		delete(videoMode); //This is the same as 'delete videoMode;'
+		delete(videoMode);
 		delete(gameWindow);
+	}
+
+	void GraphicService::SetFrameRate(int frameRateToSet)
+	{
+		gameWindow->setFramerateLimit(frameRateToSet);
 	}
 
 	void GraphicService::Update()
@@ -50,16 +55,11 @@ namespace Graphics
 	bool GraphicService::IsGameWindowOpen()
 	{
 		return gameWindow->isOpen();
-	}
+	}	
 
 	sf::RenderWindow* GraphicService::GetGameWindow()
 	{
 		return gameWindow;
-	}
-
-	sf::Color GraphicService::GetGameWindowColor()
-	{
-		return gameWindowColor;
 	}
 }
 

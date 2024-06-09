@@ -4,13 +4,20 @@
 #include "../../header/Enemy/EnemyConfig.h"
 #include "../../Header/Global/ServiceLocator.h"
 #include "../../Header/Bullet/BulletConfig.h"
+#include "../../header/Entity/Entity.h"
+#include "../../header/Bullet/BulletController.h"
+#include "../../header/Player/PlayerController.h"
+#include "../../header/Sound/SoundService.h"
 
 
 namespace Enemy
 {
 	using namespace Global;
-	using namespace Time;
 	using namespace Bullet;
+	using namespace Collision;
+	using namespace Entity;
+	using namespace Player;
+	using namespace Sound;
 
 
 	EnemyController::EnemyController(EnemyType type)
@@ -38,7 +45,7 @@ namespace Enemy
 		UpdateFireTimer();
 		ProcessBulletFire();
 		enemyView->Update();
-		HandleOutOfBounds();
+		//HandleOutOfBounds();
 	}
 
 	void EnemyController::Render()
@@ -71,7 +78,7 @@ namespace Enemy
 		return sf::Vector2f(xPosition, yPosition);
 	}
 
-	void EnemyController::HandleOutOfBounds()
+	/*void EnemyController::HandleOutOfBounds()
 	{
 		sf::Vector2f enemyPosition = GetEnemyPosition();
 
@@ -81,84 +88,6 @@ namespace Enemy
 			enemyPosition.y < 0 || enemyPosition.y > windowSize.y)
 		{
 			ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemy(this);
-		}
-	}
-
-	/*void EnemyController::Move()
-	{
-		switch (enemyModel->GetMovementDirection())
-		{
-		case::Enemy::MovementDirection::LEFT:
-			MoveLeft();
-			break;
-
-		case::Enemy::MovementDirection::RIGHT:
-			MoveRight();
-			break;
-
-		case::Enemy::MovementDirection::DOWN:
-			MoveDown();
-			break;
-		}
-	}*/
-
-	/*void EnemyController::MoveLeft()
-	{
-		sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
-
-		currentPosition.x -= enemyModel->enemyMovementSpeed
-							 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
-
-		if (currentPosition.x <= enemyModel->leftMostPosition.x)
-		{
-			enemyModel->SetMovementDirection(MovementDirection::DOWN);
-			enemyModel->SetReferencePosition(currentPosition);
-		}
-		else
-		{
-			enemyModel->SetEnemyPosition(currentPosition);
-		}
-	}*/
-
-	/*void EnemyController::MoveRight()
-	{
-		sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
-
-		currentPosition.x += enemyModel->enemyMovementSpeed
-							 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
-
-		if (currentPosition.x >= enemyModel->rightMostPosition.x)
-		{
-			enemyModel->SetMovementDirection(MovementDirection::DOWN);
-			enemyModel->SetReferencePosition(currentPosition);
-		}
-		else
-		{
-			enemyModel->SetEnemyPosition(currentPosition);
-		}
-	}*/
-
-	/*void EnemyController::MoveDown()
-	{
-		sf::Vector2f currentPosition = enemyModel->GetEnemyPosition();
-
-		currentPosition.y += enemyModel->enemyMovementSpeed
-							 * ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
-
-		if (currentPosition.y >= enemyModel->GetReferencePosition().y + enemyModel->verticalTravelDistance)
-		{
-			if (enemyModel->GetReferencePosition().x <= enemyModel->leftMostPosition.x)
-			{
-				enemyModel->SetMovementDirection(MovementDirection::RIGHT);
-			}
-			else
-			{
-				enemyModel->SetMovementDirection(MovementDirection::LEFT);
-			}
-		}
-		else
-		{
-			enemyModel->SetEnemyPosition(currentPosition);
 		}
 	}*/
 
@@ -175,6 +104,36 @@ namespace Enemy
 	EnemyType EnemyController::GetEnemyType()
 	{
 		return enemyModel->GetEnemyType();
+	}
+
+	const sf::Sprite& EnemyController::GetColliderSprite()
+	{
+		return enemyView->GetEnemySprite();
+	}
+
+	void EnemyController::OnCollision(ICollider* otherCollider)
+	{
+		BulletController* bulletController = dynamic_cast<BulletController*>(otherCollider);
+
+		if (bulletController && bulletController->GetOwnerEntityType() != EntityType::ENEMY)
+		{
+			Destroy();
+			return;
+		}
+
+		PlayerController* playerController = dynamic_cast<PlayerController*>(otherCollider);
+
+		if (playerController)
+		{
+			Destroy();
+			return;
+		}
+	}
+
+	void EnemyController::Destroy()
+	{
+		ServiceLocator::GetInstance()->GetPlayerService()->IncreaseEnemiesKilled(1);
+		ServiceLocator::GetInstance()->GetEnemyService()->DestroyEnemy(this);
 	}
 }
 

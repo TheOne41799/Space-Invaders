@@ -1,6 +1,6 @@
 #pragma once
-#include "../../header/Enemy/EnemyController.h"
-#include "../../Header/Powerups/PowerupConfig.h"
+#include "../EnemyController.h"
+#include "../../Powerups/PowerupConfig.h"
 
 
 namespace Enemy
@@ -10,12 +10,12 @@ namespace Enemy
         class UFOController : public EnemyController
         {
         private:
-
             void Move() override;
             void MoveLeft();
             void MoveRight();
 
             void FireBullet() override;
+            void Destroy() override;
 
             Powerup::PowerupType GetRandomPowerupType();
 
@@ -24,6 +24,7 @@ namespace Enemy
             ~UFOController();
 
             void Initialize() override;
+            void OnCollision(ICollider* otherCollider) override;
         };
     }
 }

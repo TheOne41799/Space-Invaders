@@ -16,14 +16,12 @@ namespace Global
 		static const sf::String ufoTexturePath;
 		static const sf::String bunkerTexturePath;
 
+		static const sf::String explosionTexturePath;
+
 		static const sf::String shieldTexturePath;
 		static const sf::String trippleLaserTexturePath;
 		static const sf::String rapidFireTexturePath;
 		static const sf::String outscalBombTexturePath;
-
-		static const sf::String laserBulletTexturePath;
-		static const sf::String torpedoeTexturePath;
-		static const sf::String frostBeamTexturePath;
 
 		static const sf::String playButtonTexturePath;
 		static const sf::String instructionsButtonTexturePath;
@@ -35,5 +33,8 @@ namespace Global
 
 		static const sf::String backgroundMusicPath;
 		static const sf::String buttonClickSoundPath;
+		static const sf::String bulletFireSoundPath;
+		static const sf::String powerupEnabledSoundPath;
+		static const sf::String powerupDisabledSoundPath;
 	};
 }

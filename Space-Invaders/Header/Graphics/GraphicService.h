@@ -7,6 +7,8 @@ namespace Graphics
 	class GraphicService
 	{
 	private:
+		const int frameRate = 60;
+
 		const std::string gameWindowTitle = "Space Invaders";
 
 		const int gameWindowWidth = 1920;
@@ -16,8 +18,6 @@ namespace Graphics
 
 		sf::VideoMode* videoMode;
 		sf::RenderWindow* gameWindow;
-
-		const int frameRate = 60;
 
 		void SetVideoMode();
 		void OnDestroy();
@@ -32,8 +32,8 @@ namespace Graphics
 		void Update();
 		void Render();
 		bool IsGameWindowOpen();
+		void SetFrameRate(int frameRateToSet);
 
 		sf::RenderWindow* GetGameWindow();
-		sf::Color GetGameWindowColor();
 	};
 }
