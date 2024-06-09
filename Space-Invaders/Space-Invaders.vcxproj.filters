@@ -359,5 +359,14 @@
     <ClInclude Include="Header\UI\UIElement\AnimatedImageView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header\AnimationSystem\AnimationSystemConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\AnimationSystem\AnimationSystemConfigData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\AnimationSystem\AnimationSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
