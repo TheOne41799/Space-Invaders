@@ -289,7 +289,7 @@ namespace Player
 	{
 		if (elapsedFreezeDuration > 0)
 		{
-			elapsedFireDuration -= ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
+			elapsedFreezeDuration -= ServiceLocator::GetInstance()->GetTimeService()->GetDeltaTime();
 
 			if (elapsedFreezeDuration <= 0)
 			{
