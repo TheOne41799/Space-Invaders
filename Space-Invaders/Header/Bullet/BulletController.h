@@ -1,6 +1,5 @@
 #pragma once
 #include "../Projectile/IProjectile.h"
-//#include "../Bullet/BulletConfig.h"
 #include "../Entity/Entity.h"
 #include "../Collision/ICollider.h"
 

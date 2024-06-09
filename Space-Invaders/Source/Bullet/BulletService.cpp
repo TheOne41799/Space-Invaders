@@ -126,6 +126,12 @@ namespace Bullet
 		flaggedBulletList.push_back(bulletController);
 
 		bulletList.erase(std::remove(bulletList.begin(), bulletList.end(), bulletController), bulletList.end());
+
+		/*if (std::find(flaggedBulletList.begin(), flaggedBulletList.end(), bulletController) == flaggedBulletList.end())
+		{
+			flaggedBulletList.push_back(bulletController);
+			bulletList.erase(std::remove(bulletList.begin(), bulletList.end(), bulletController), bulletList.end());
+		}*/
 	}
 
 	void BulletService::Reset()
