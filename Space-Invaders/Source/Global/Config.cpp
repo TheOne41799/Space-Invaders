@@ -21,6 +21,9 @@ namespace Global
 	const sf::String Config::bunkerTexturePath = "assets/textures/bunker.png";
 
 
+	const sf::String Config::explosionTexturePath = "assets/textures/explosion.png";
+
+
 	const sf::String Config::shieldTexturePath = "assets/textures/shield.png";
 
 	const sf::String Config::trippleLaserTexturePath = "assets/textures/tripple_laser.png";
