@@ -17,6 +17,7 @@ namespace Global
 	using namespace Bullet;
 	using namespace Powerup;
 	using namespace Collision;
+	using namespace Animation;
 
 
 	ServiceLocator::ServiceLocator()
@@ -33,6 +34,7 @@ namespace Global
 		bulletService = nullptr;
 		powerupService = nullptr;
 		collisionService = nullptr;
+		animationService = nullptr;
 
 		CreateServices();
 	}
@@ -56,6 +58,7 @@ namespace Global
 		powerupService = new PowerupService();
 		collisionService = new CollisionService();
 		soundService = new SoundService();
+		animationService = new AnimationService();
 	}
 
 	void ServiceLocator::ClearAllServices()
@@ -72,6 +75,7 @@ namespace Global
 		delete(bulletService);
 		delete(powerupService);
 		delete(collisionService);
+		delete(animationService);
 	}
 
 	ServiceLocator* ServiceLocator::GetInstance()
@@ -94,6 +98,7 @@ namespace Global
 		bulletService->Initialize();
 		powerupService->Initialize();
 		collisionService->Initialize();
+		animationService->Initialize();
 	}
 
 	void ServiceLocator::Update()
@@ -111,6 +116,7 @@ namespace Global
 			bulletService->Update();			
 			powerupService->Update();
 			collisionService->Update();
+			animationService->Update();
 		}
 
 		uiService->Update();
@@ -128,6 +134,7 @@ namespace Global
 			elementService->Render();
 			bulletService->Render();
 			powerupService->Render();
+			animationService->Render();
 		}
 
 		uiService->Render();
@@ -153,27 +160,27 @@ namespace Global
 		return timeService;
 	}
 
-	UI::UIService* ServiceLocator::GetUIService()
+	UIService* ServiceLocator::GetUIService()
 	{
 		return uiService;
 	}
 
-	Enemy::EnemyService* ServiceLocator::GetEnemyService()
+	EnemyService* ServiceLocator::GetEnemyService()
 	{
 		return enemyService;
 	}
 
-	Gameplay::GameplayService* ServiceLocator::GetGameplayService()
+	GameplayService* ServiceLocator::GetGameplayService()
 	{
 		return gameplayService;
 	}
 
-	Elements::ElementService* ServiceLocator::GetElementService()
+	ElementService* ServiceLocator::GetElementService()
 	{
 		return elementService;
 	}
 
-	Sound::SoundService* ServiceLocator::GetSoundService()
+	SoundService* ServiceLocator::GetSoundService()
 	{
 		return soundService;
 	}
@@ -188,9 +195,14 @@ namespace Global
 		return powerupService;
 	}
 
-	Collision::CollisionService* ServiceLocator::GetCollisionService()
+	CollisionService* ServiceLocator::GetCollisionService()
 	{
 		return collisionService;
+	}
+
+	AnimationService* ServiceLocator::GetAnimationService()
+	{
+		return animationService;
 	}
 }
 

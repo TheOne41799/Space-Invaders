@@ -21,6 +21,9 @@ namespace Global
 	const sf::String Config::bunkerTexturePath = "assets/textures/bunker.png";
 
 
+	const sf::String Config::explosionTexturePath = "assets/textures/explosion.png";
+
+
 	const sf::String Config::shieldTexturePath = "assets/textures/shield.png";
 
 	const sf::String Config::trippleLaserTexturePath = "assets/textures/tripple_laser.png";
@@ -53,4 +56,6 @@ namespace Global
 	const sf::String Config::powerupEnabledSoundPath = "assets/sounds/powerup_enabled.ogg";
 
 	const sf::String Config::powerupDisabledSoundPath = "assets/sounds/powerup_disabled.ogg";
+
+	const sf::String Config::explosionSoundPath = "assets/sounds/explosion.wav";
 }

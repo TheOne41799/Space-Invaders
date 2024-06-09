@@ -1,6 +1,7 @@
 #include "../../Header/Main/GameService.h"
 #include "../../Header/Graphics/GraphicService.h"
 #include "../../Header/Event/EventService.h"
+#include "../../Header/UI/UIService.h"
 
 
 namespace Main
@@ -18,14 +19,14 @@ namespace Main
 
 	GameService::~GameService()
 	{
-		//Destroy();
+		
 	}
 
 	void GameService::Initialize()
 	{
 		serviceLocator->Initialize();
 		InitializeVariables();
-		ShowMainMenu();
+		ShowSplashScreen();
 	}
 
 	void GameService::InitializeVariables()
@@ -50,7 +51,7 @@ namespace Main
 		gameWindow->clear();
 		serviceLocator->Render();
 		gameWindow->display();
-	}
+	}	
 
 	bool GameService::IsRunning()
 	{
@@ -67,9 +68,10 @@ namespace Main
 		return currentState;
 	}
 
-	void GameService::ShowMainMenu()
+	void GameService::ShowSplashScreen()
 	{
-		SetGameState(GameState::MAIN_MENU);
+		SetGameState(GameState::SPLASH_SCREEN);
+		ServiceLocator::GetInstance()->GetUIService()->ShowScreen();
 	}
 }
 
